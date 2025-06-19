@@ -1,0 +1,47 @@
+.homepage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.homepage .content {
+  width: 100%;
+  height: clamp(60vh, 85vh, 100vh);
+  object-fit: cover;
+  display: block;
+}
+
+.homepage .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: clamp(5rem, 80%, 40rem);
+}
+
+.homepage .title {
+  font-size: 1.5rem;
+}
+
+.homepage .narration {
+  font-size: 1.25rem;
+}
+
+.homepage .order-button {
+  margin-top: 10%;
+  font-size: 1.25rem;
+  border-radius: 15px 15px 15px 15px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: #000;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 2.0rem;
+}

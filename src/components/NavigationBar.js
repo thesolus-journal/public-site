@@ -8,23 +8,21 @@ import { Link } from "react-router-dom";
  */
 function NavigationBar() {
   return (
-    <nav className="navbar">
-      <div className="navbar-links">
-        <Link to="/about-us" className="nav-link">
+    <nav className="navigation-bar">
+      <div className="links">
+        <Link to="/about-us" className="link">
           ABOUT US
         </Link>
-        <Link to="/our-product" className="nav-link">
+        <Link to="/our-product" className="link">
           OUR PRODUCT
         </Link>
-        <div className="navbar-brand">
-          <Link to="/" className="navbar-brand-link">
-            <img src="logo.png" alt="logo" className="navbar-logo"></img>
-          </Link>
-        </div>
-        <Link to="/personalize" className="nav-link">
+        <Link to="/" className="brand-link">
+          <img src="logo.png" alt="logo" className="brand-logo"></img>
+        </Link>
+        <Link to="/personalize" className="link">
           PERSONALIZE
         </Link>
-        <Link to="/contact-us" className="nav-link">
+        <Link to="/contact-us" className="link">
           CONTACT US
         </Link>
       </div>
