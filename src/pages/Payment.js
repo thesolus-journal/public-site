@@ -28,7 +28,7 @@ function Payment() {
 
       <div className="payment-content">
         <div className="barcode">
-          <img src="qr_code.pdf" alt="Payment Barcode" />
+          <img src="qr_code.png" alt="Payment Barcode" />
         </div>
 
         <div className="process-steps">

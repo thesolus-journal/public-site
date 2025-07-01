@@ -29,12 +29,13 @@
 
 /* Fixed label width for perfect alignment */
 .form-row label {
-  flex: 0 0 280px; /* fixed width */
+  flex: 0 0 clamp(150px, 20vw, 280px);
   margin-right: 15px;
   font-weight: 600;
   text-align: left;
   user-select: none;
-  padding-top: 8px; /* Align label text baseline with input padding */
+  padding-top: 8px;
+  white-space: nowrap;
 }
 
 .form-row input,
@@ -97,3 +98,38 @@ hr {
   cursor: not-allowed;
 {}
 }
+
+.totals-summary {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.form-navigation {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    align-items: stretch; /* make input full width */
+  }
+
+  .form-row label {
+    flex: none;
+    margin-right: 0;
+    margin-bottom: 6px; /* space between label and input */
+    padding-top: 0;
+    white-space: normal; /* allow label to wrap */
+  }
+
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: 90%; /* full width input */
+  }
+}
+

@@ -194,25 +194,8 @@ function ShippingInformation() {
           </div>
         </div>
 
-        {/* Show discount and totals */}
-        <div style={{ marginTop: 20, fontWeight: "bold" }}>
-          <p>
-            Total before discount: VND {totalBeforeDiscount.toLocaleString()}
-          </p>
-          <p>
-            Discount: {discountPercent}% (-VND {discountAmount.toLocaleString()}
-            )
-          </p>
-          <p>Total after discount: VND {totalAmount.toLocaleString()}</p>
-        </div>
-
-        <div className="form-navigation" style={{ marginTop: 20 }}>
-          <button
-            type="button"
-            onClick={handleBack}
-            style={{ marginRight: 10 }}
-            disabled={isSubmitting}
-          >
+        <div className="form-navigation">
+          <button type="button" onClick={handleBack} disabled={isSubmitting}>
             Back
           </button>
           <button type="submit" disabled={isSubmitting}>
