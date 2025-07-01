@@ -22,8 +22,8 @@ function NavigationBar() {
         <Link to="/personalize" className="link">
           PERSONALIZE
         </Link>
-        <Link to="/contact-us" className="link">
-          CONTACT US
+        <Link to="/shopping-cart" className="link">
+          SHOPPING CART
         </Link>
       </div>
     </nav>

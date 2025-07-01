@@ -1,0 +1,61 @@
+.about-page {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  justify-content: left;
+  align-items: flex-start;
+}
+
+.about-page .content {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  width: clamp(10rem, 60vw, 50rem);
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.about-page .content img{
+  margin-top: 5rem;
+  margin-right: 2rem;
+  width: 90%;
+}
+
+.about-page .text {
+  width: clamp(12rem, 55vw, 50rem);
+  margin-top: 1rem;
+  margin-left: 2.5rem;
+}
+
+.about-page h3 {
+  font-size: 1.5rem;
+}
+
+.about-page p {
+  font-size: 1rem;
+}
+
+
+@media (max-width: 800px) {
+  .about-page {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-page .content,
+  .about-page .text {
+    width: 90vw;
+    margin: 1rem 0;
+    height: auto;
+    align-items: center;
+  }
+
+  .about-page .content img {
+    width: 100%;
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
+

@@ -1,0 +1,99 @@
+.shipping-page {
+  max-width: 100vw;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+.shipping-page h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.shipping-form {
+  width: 100%;
+  max-width: none;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start; /* Align label and input top edges */
+  margin-bottom: 15px;
+}
+
+/* Fixed label width for perfect alignment */
+.form-row label {
+  flex: 0 0 280px; /* fixed width */
+  margin-right: 15px;
+  font-weight: 600;
+  text-align: left;
+  user-select: none;
+  padding-top: 8px; /* Align label text baseline with input padding */
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+  flex: 1 1 auto;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s ease-in-out;
+  font-family: inherit;
+  outline-offset: 2px;
+  background-color: transparent;
+}
+
+/* Focus state */
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0px #4a90e2;
+  outline: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 30px 0;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-navigation button {
+  height: 2.5rem;
+  width: 10rem;
+  font-size: 1.25rem;
+  border-radius: 15px 15px 15px 15px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: #000;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1.0rem;
+  font-size: inherit;
+}
+
+.form-navigation button:hover {
+  background-color: #333;
+}
+
+.form-navigation button:disabled {
+  /* background-color: #a0c1f7; */
+  background-color: #888888;
+  cursor: not-allowed;
+{}
+}
