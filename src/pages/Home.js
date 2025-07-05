@@ -1,6 +1,11 @@
 import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Home component displays the landing page with a video background and a call to action.
+ * @component
+ * @returns {JSX.Element} The home page element.
+ */
 function Home() {
   const navigate = useNavigate();
   return (

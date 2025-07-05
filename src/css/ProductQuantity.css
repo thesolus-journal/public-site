@@ -1,90 +1,78 @@
 .product-quantity {
   display: flex;
   align-items: center;
+  gap: var(--space-md);
 }
 
 .adjustor {
   display: flex;
   align-items: center;
+  gap: var(--space-sm);
+}
+
+.product-quantity .display {
+  width: clamp(40px, 6vw, 60px);
+  height: clamp(40px, 6vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  font-size: var(--font-size-md);
+}
+
+.product-quantity .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.product-quantity .buttons button {
+  width: clamp(20px, 3vw, 30px);
+  height: clamp(20px, 3vw, 30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--space-xs);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.product-quantity .buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .action-buttons {
   display: flex;
-  align-items: center;
+  gap: var(--space-md);
 }
 
-.product-quantity .adjustor .display {
-  display: flex;
-  font-size: 1rem;
-  height: 3rem;
-  width: 3rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #333;
-}
-
-.product-quantity .adjustor .quantity {
-  display: flex;
-  text-align: center;
-}
-
-.product-quantity .adjustor .buttons {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  padding: 0rem;
-  left: 0.5rem;
-}
-
-.product-quantity .adjustor .buttons button {
-  background-color: transparent;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-top: 0.0rem;
-  border-radius: 50%;
-  border: 1px solid #333;
-}
-
-.product-quantity .action-buttons button {
-  margin-left: 5%;
-  height: 2.5rem;
-  width: 10rem;
-  font-size: 1.25rem;
-  border-radius: 15px 15px 15px 15px;
+.action-buttons button {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--space-xs);
   border: none;
-  outline: none;
-  box-shadow: none;
-  background-color: #000;
+  background-color: var(--text-dark);
   color: white;
   cursor: pointer;
-  padding: 0.5rem 1.0rem;
-  font-size: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.action-buttons button:hover {
+  background-color: #444;
+}
+
+.disabled-button {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 800px) {
-  /* .product-quantity { */
-  /*   flex-direction: column; */
-  /*   align-items: flex-start; */
-  /* } */
-  /**/
-  /* .adjustor { */
-  /*   margin-bottom: 1rem; */
-  /* } */
-
-  /* .action-buttons { */
-  /*   flex-direction: column; */
-  /*   align-items: stretch; */
-  /*   width: 100%; */
-  /* } */
-
-  .product-quantity .action-buttons button {
-    margin-left: 1.2rem;
-    width: 70%;
+  .product-quantity {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  /* .product-quantity .adjustor .buttons { */
-  /*   left: 0.25rem; */
-  /* } */
 }
+
 

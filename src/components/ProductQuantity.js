@@ -4,37 +4,42 @@ import { useNavigate } from "react-router-dom";
 
 import "../css/ProductQuantity.css";
 
-function ProductQuantity({ product }) {
+/**
+ * Allows users to adjust the quantity of a product and add it to the cart.
+ * @param {object} props - The component props.
+ * @param {object} props.product - The product to be added to the cart.
+ * @param {boolean} [props.showPersonalizeButton=true] - Whether to show the "Personalize" button.
+ * @returns {JSX.Element} The product quantity component.
+ */
+function ProductQuantity({ product, showPersonalizeButton = true }) {
   const navigate = useNavigate();
-  const { cart, addToCart, updateQuantity } = useProductContext();
-  const [additionalQuantity, setAdditionalQuantity] = useState(0);
+  const { addToCart } = useProductContext();
+  const [quantity, setQuantity] = useState(1);
 
-  function handleIncreaseQuantity() {
-    setAdditionalQuantity((prev) => prev + 1);
-  }
+  /**
+   * Increases the quantity, ensuring it does not go above a reasonable limit.
+   */
+  const handleIncrease = () => {
+    setQuantity((prev) => Math.min(prev + 1, 99));
+  };
 
-  function handleDecreaseQuantity() {
-    if (additionalQuantity > 0) {
-      setAdditionalQuantity((prev) => prev - 1);
+  /**
+   * Decreases the quantity, ensuring it does not go below 1.
+   */
+  const handleDecrease = () => {
+    setQuantity((prev) => Math.max(prev - 1, 1));
+  };
+
+  /**
+   * Adds the selected quantity of the product to the cart.
+   */
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart(product, quantity);
+      alert(`${quantity} item(s) have been added to your cart!`);
+      setQuantity(1);
     }
-  }
-
-  function handleAddToCart() {
-    const productInCart = cart.find((item) => item.id === product.id);
-    const existingQuantity = productInCart?.quantity || 0;
-    const finalQuantity = existingQuantity + additionalQuantity;
-
-    if (productInCart) {
-      updateQuantity(product.id, finalQuantity);
-    } else {
-      addToCart(product);
-      if (additionalQuantity > 1) {
-        updateQuantity(product.id, additionalQuantity);
-      }
-    }
-    setAdditionalQuantity(0);
-    alert("Item has been added to your cart!");
-  }
+  };
 
   return (
     <>
@@ -42,35 +47,28 @@ function ProductQuantity({ product }) {
       <div className="product-quantity">
         <div className="adjustor">
           <div className="display">
-            <span className="quantity">{additionalQuantity}</span>
+            <span className="quantity">{quantity}</span>
           </div>
           <div className="buttons">
-            <button onClick={handleIncreaseQuantity}>+</button>
+            <button onClick={handleIncrease}>+</button>
             <button
-              onClick={handleDecreaseQuantity}
-              disabled={additionalQuantity === 0}
-              style={{
-                opacity: additionalQuantity === 0 ? 0.5 : 1,
-                cursor: additionalQuantity === 0 ? "not-allowed" : "pointer",
-                marginTop: "0.5rem",
-              }}
+              onClick={handleDecrease}
+              disabled={quantity === 1}
+              className={quantity === 1 ? "disabled-button" : ""}
             >
               -
             </button>
           </div>
         </div>
         <div className="action-buttons">
-          <button
-            onClick={handleAddToCart}
-            disabled={additionalQuantity === 0}
-            style={{
-              opacity: additionalQuantity === 0 ? 0.5 : 1,
-              cursor: additionalQuantity === 0 ? "not-allowed" : "pointer",
-            }}
-          >
+          <button onClick={handleAddToCart} disabled={quantity === 0}>
             Add to Cart
           </button>
-          <button onClick={() => navigate("/personalize")}>Personalize</button>
+          {showPersonalizeButton && (
+            <button onClick={() => navigate("/personalize")}>
+              Personalize
+            </button>
+          )}
         </div>
       </div>
     </>

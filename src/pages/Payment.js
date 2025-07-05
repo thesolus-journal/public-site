@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaCreditCard, FaTruck } from "react-icons/fa";
 import {
   HiOutlineShoppingCart,
   HiOutlineCreditCard,
@@ -11,6 +10,12 @@ import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
 import "../css/Payment.css";
 
+/**
+ * Payment component guides the user through the self-checkout payment process.
+ * It displays a QR code for payment and outlines the steps to complete the transaction.
+ * @component
+ * @returns {JSX.Element} The payment page element.
+ */
 function Payment() {
   const navigate = useNavigate();
   const { clearCart } = useProductContext();

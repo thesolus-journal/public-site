@@ -1,15 +1,17 @@
 .homepage {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
 .homepage .content {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: clamp(60vh, 85vh, 100vh);
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .homepage .text {
@@ -18,30 +20,36 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 2rem;
-  padding: 10px 20px;
-  border-radius: 5px;
   text-align: center;
-  width: clamp(5rem, 80%, 40rem);
+  padding: var(--space-md);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  width: clamp(300px, 80%, 600px);
+  z-index: 1;
 }
 
 .homepage .title {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  margin-bottom: var(--space-md);
 }
 
 .homepage .narration {
-  font-size: 1.25rem;
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-lg);
 }
 
 .homepage .order-button {
-  margin-top: 10%;
-  font-size: 1.25rem;
-  border-radius: 15px 15px 15px 15px;
+  font-size: var(--font-size-md);
+  border-radius: 8px;
   border: none;
-  outline: none;
-  box-shadow: none;
-  background-color: #000;
+  background-color: var(--text-dark);
   color: white;
   cursor: pointer;
-  padding: 0.5rem 2.0rem;
+  padding: var(--space-sm) var(--space-lg);
+  transition: background-color 0.2s ease;
+}
+
+.homepage .order-button:hover {
+  background-color: #444;
 }

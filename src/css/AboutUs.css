@@ -1,38 +1,40 @@
 .about-page {
   display: flex;
-  height: 80vh;
+  min-height: clamp(60vh, 80vh, 90vh);
   width: 100%;
   justify-content: left;
   align-items: flex-start;
+  padding: var(--space-md);
+  box-sizing: border-box;
 }
 
 .about-page .content {
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: auto;
   width: clamp(10rem, 60vw, 50rem);
-  margin-top: 1rem;
+  margin-top: var(--space-sm);
   align-items: center;
 }
 
 .about-page .content img{
-  margin-top: 5rem;
-  margin-right: 2rem;
+  margin-top: var(--space-xl);
+  margin-right: var(--space-md);
   width: 90%;
 }
 
 .about-page .text {
   width: clamp(12rem, 55vw, 50rem);
-  margin-top: 1rem;
-  margin-left: 2.5rem;
+  margin-top: var(--space-sm);
+  margin-left: var(--space-lg);
 }
 
 .about-page h3 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-lg);
 }
 
 .about-page p {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 
@@ -47,7 +49,7 @@
   .about-page .content,
   .about-page .text {
     width: 90vw;
-    margin: 1rem 0;
+    margin: var(--space-sm) 0;
     height: auto;
     align-items: center;
   }
@@ -58,4 +60,5 @@
     margin-right: 0;
   }
 }
+
 

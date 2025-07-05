@@ -10,14 +10,31 @@
 
 .personalization-overlay {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: var(--space-xs);
+  right: var(--space-xs);
   background-color: transparent;
-  color: #333;
-  padding: 6px 10px;
-  font-size: 0.9rem;
-  border-radius: 6px;
+  color: var(--text-dark);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  border-radius: var(--space-xs);
   font-style: italic;
   max-width: 70%;
   overflow-wrap: break-word;
 }
+
+.personalization-input {
+  width: 100%;
+  padding: var(--space-sm);
+  margin-top: var(--space-xs);
+  border: 1px solid var(--border-color);
+  border-radius: var(--space-xs);
+  font-size: var(--font-size-md);
+  box-sizing: border-box;
+}
+
+.personalization-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+

@@ -1,52 +1,85 @@
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import "../css/Cart.css";
+import { useState, useMemo } from "react";
+import { FaTrash } from "react-icons/fa";
+import "../css/ShoppingCart.css";
 
+/**
+ * Displays the items in the shopping cart, allowing users to adjust quantities,
+ * remove items, apply coupons, and proceed to shipping.
+ * @returns {JSX.Element} The shopping cart page component.
+ */
 function ShoppingCart() {
   const { cart, updateQuantity, removeFromCart } = useProductContext();
-  const { couponCode, applyCoupon, discountPercent, clearCoupon } =
-    useCouponContext();
-
+  const { applyCoupon, discountPercent } = useCouponContext();
   const navigate = useNavigate();
   const [inputCode, setInputCode] = useState("");
-  const [couponMessage, setCouponMessage] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
 
-  const totalBeforeDiscount = cart.reduce(
-    (acc, item) => acc + parseInt(item.price) * item.quantity,
-    0,
+  const totalBeforeDiscount = useMemo(
+    () =>
+      cart.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0),
+    [cart],
   );
 
   const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
   const totalAfterDiscount = totalBeforeDiscount - discountAmount;
 
-  // const total = cart.reduce(
-  //   (acc, item) => acc + parseInt(item.price) * item.quantity,
-  //   0,
-  // );
+  const handleProceedToShipping = () => navigate("/shipping-information");
 
-  function handleProceedToShipping() {
-    navigate("/shipping-information");
-  }
-
-  function handleApplyCoupon() {
+  const handleApplyCoupon = () => {
     const success = applyCoupon(inputCode.trim());
-    if (success) {
-      setCouponMessage("Coupon applied!");
-      setIsInvalid(false);
-    } else {
-      setCouponMessage("Invalid code");
-      setIsInvalid(true);
-    }
-  }
+    setIsInvalid(!success);
+  };
 
-  function handleClearCoupon() {
-    clearCoupon();
-    setCouponMessage("");
-    setInputCode("");
-  }
+  const renderCartItem = (item) => {
+    const isPersonalized =
+      item.personalization || item.name.includes(" - Personalized (");
+    let displayName = item.name;
+    let personalizationText = item.personalization;
+
+    if (isPersonalized && !personalizationText) {
+      const parts = item.name.split(" - Personalized (");
+      displayName = parts[0];
+      personalizationText = parts[1]?.slice(0, -1); // Remove trailing ')'
+    }
+
+    return (
+      <div key={item.id} className="cart-item">
+        <div className="item-details">
+          <div className="item-title">{displayName}</div>
+          {isPersonalized ? (
+            <div className="item-personalization">
+              Personalized: {personalizationText}
+            </div>
+          ) : (
+            <div className="item-class">{item.class}</div>
+          )}
+        </div>
+        <div className="item-controls-group">
+          <div className="item-controls">
+            <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+              -
+            </button>
+            <span>{item.quantity}</span>
+            <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+              +
+            </button>
+          </div>
+          <div className="item-total">
+            VND {(item.price * item.quantity).toLocaleString()}
+          </div>
+          <button
+            className="remove-item"
+            onClick={() => removeFromCart(item.id)}
+          >
+            <FaTrash />
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="cart-page">
@@ -55,56 +88,26 @@ function ShoppingCart() {
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <div className="cart-items">
-          {cart.map((item) => (
-            <div key={item.id} className="cart-item">
-              <div className="item-details">
-                <div className="item-title">{item.title}</div>
-                <div className="item-class">{item.class}</div>
-              </div>
-              <div className="item-controls-group">
-                <div className="item-controls">
-                  <button
-                    onClick={() => {
-                      if (item.quantity === 1) {
-                        removeFromCart(item.id);
-                      } else {
-                        updateQuantity(item.id, item.quantity - 1);
-                      }
-                    }}
-                  >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="item-total">
-                  VND {(item.price * item.quantity).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          ))}
-          {/* Coupon input section */}
-          <div className="coupon-section" style={{ marginTop: "20px" }}>
+        <>
+          <div className="cart-items">{cart.map(renderCartItem)}</div>
+
+          <div className="coupon-section">
             <input
               type="text"
               placeholder="Enter coupon code"
               value={inputCode}
-              onChange={(e) => setInputCode(e.target.value)}
+              onChange={(e) => {
+                setInputCode(e.target.value);
+                if (isInvalid) setIsInvalid(false);
+              }}
               className={isInvalid ? "invalid-coupon" : ""}
             />
             <button onClick={handleApplyCoupon} disabled={!inputCode.trim()}>
               Apply
             </button>
           </div>
-          {/* <div className="cart-total"> */}
-          {/*   <strong>Total: VND {total.toLocaleString()}</strong> */}
-          {/* </div> */}
-          <div className="cart-total" style={{ marginTop: "20px" }}>
+
+          <div className="cart-total">
             {discountPercent > 0 ? (
               <>
                 <div className="total-row">
@@ -114,7 +117,7 @@ function ShoppingCart() {
                   </span>
                 </div>
                 <div className="total-row">
-                  <span className="label">Discount {discountPercent}%:</span>
+                  <span className="label">Discount ({discountPercent}%):</span>
                   <span className="value">
                     -{discountAmount.toLocaleString()}
                   </span>
@@ -129,15 +132,23 @@ function ShoppingCart() {
                 </div>
               </>
             ) : (
-              <strong>Total: VND {totalBeforeDiscount.toLocaleString()}</strong>
+              <div className="total-row">
+                <span className="label">
+                  <strong>Total:</strong>
+                </span>
+                <span className="value">
+                  <strong>VND {totalBeforeDiscount.toLocaleString()}</strong>
+                </span>
+              </div>
             )}
           </div>
+
           <div className="proceed-button">
             <button onClick={handleProceedToShipping}>
               Proceed to Shipping
             </button>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

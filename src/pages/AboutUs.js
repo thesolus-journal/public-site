@@ -1,5 +1,10 @@
 import "../css/AboutUs.css";
 
+/**
+ * AboutUs component displays information about the company or individual behind the website.
+ * @component
+ * @returns {JSX.Element} The about us page element.
+ */
 function AboutUs() {
   return (
     <div className="about-page">

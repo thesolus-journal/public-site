@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
-import { useCouponContext } from "../contexts/CouponContext"; // Assuming you created this
+import { useCouponContext } from "../contexts/CouponContext";
 import "../css/ShippingInformation.css";
 
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxHa_XHeXueFlGE9qFDU_RbHXu5v2XBy1pCpxgSv6OTkpGwc3dcizbzJEOOX6yQDQAW/exec";
+
+/**
+ * Handles the collection of shipping and contact details from the user and
+ * submits the order to a Google Sheet.
+ * @returns {JSX.Element} The shipping information form component.
+ */
 function ShippingInformation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { cart } = useProductContext();
   const { discountPercent = 0 } = useCouponContext() || {};
-
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -20,177 +28,190 @@ function ShippingInformation() {
     referral: "",
   });
 
-  // Calculate totals here (before return)
-  const totalBeforeDiscount = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
-  const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
-  const totalAmount = totalBeforeDiscount - discountAmount;
+  const totalAmount = useMemo(() => {
+    const totalBeforeDiscount = cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
+    const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
+    return totalBeforeDiscount - discountAmount;
+  }, [cart, discountPercent]);
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-  }
+  };
 
-  function handleBack() {
-    navigate("/shopping-cart");
-  }
+  const handleBack = () => navigate("/shopping-cart");
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const cartItemsString = cart
       .map(
         (item) =>
-          `${item.title || item.name} x${item.quantity} (${item.price * item.quantity} VND)`,
+          `${item.name} x${item.quantity} (${(
+            item.price * item.quantity
+          ).toLocaleString()} VND)`,
       )
       .join(", ");
 
-    const payload = new URLSearchParams();
-    payload.append("Name", form.name);
-    payload.append("Email", form.email);
-    payload.append("Phone", form.phone);
-    payload.append("Address", form.address);
-    payload.append("DOB", form.dob);
-    payload.append("Occupation", form.occupation);
-    payload.append("Referral", form.referral);
-    payload.append("CartItems", cartItemsString);
-    payload.append("Total", totalAmount.toLocaleString());
+    const formData = new FormData();
+    formData.append("Name", form.name);
+    formData.append("Email", form.email);
+    formData.append("Phone", form.phone);
+    formData.append("Address", form.address);
+    formData.append("DOB", form.dob);
+    formData.append("Occupation", form.occupation);
+    formData.append("Referral", form.referral);
+    formData.append("CartItems", cartItemsString);
+    formData.append("Total", totalAmount.toLocaleString());
 
-    const url =
-      "https://script.google.com/macros/s/AKfycbxHa_XHeXueFlGE9qFDU_RbHXu5v2XBy1pCpxgSv6OTkpGwc3dcizbzJEOOX6yQDQAW/exec";
-
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: payload.toString(),
-    })
-      .then((res) => res.text())
-      .then(() => {
-        setIsSubmitting(false);
-        window.alert("Thank you for shopping with us. Your order is recorded!");
-        navigate("/payment");
-      })
-      .catch((error) => {
-        console.error("Submission error:", error);
-        setIsSubmitting(false);
-        window.alert("An error occurred. Please try again.");
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: formData,
       });
-  }
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      alert("Thank you for shopping with us. Your order is recorded!");
+      navigate("/payment");
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="shipping-page">
       <h2>Shipping & Contact Information</h2>
 
       <form className="shipping-form" onSubmit={handleSubmit}>
-        {/* First group: mandatory fields */}
         <div className="form-group">
           <div className="form-row">
             <label htmlFor="name">
               Full Name<span className="required">*</span>:
             </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-              required
-            />
+            <div className="form-field-container">
+              <input
+                id="name"
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="email">
               Email Address<span className="required">*</span>:
             </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="We'll send your order confirmation here"
-              required
-            />
+            <div className="form-field-container">
+              <input
+                id="email"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="We'll send your order confirmation here"
+                required
+              />
+            </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="phone">
               Phone Number<span className="required">*</span>:
             </label>
-            <input
-              id="phone"
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Shipper will contact this number"
-              required
-            />
+            <div className="form-field-container">
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Shipper will contact this number"
+                required
+              />
+            </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="address">
               Shipping Address<span className="required">*</span>:
             </label>
-            <textarea
-              id="address"
-              name="address"
-              value={form.address}
-              onChange={handleChange}
-              placeholder="Where we will deliver your order"
-              required
-            />
+            <div className="form-field-container">
+              <textarea
+                id="address"
+                name="address"
+                value={form.address}
+                onChange={handleChange}
+                placeholder="Where we will deliver your order"
+                required
+                rows={3}
+              />
+            </div>
           </div>
         </div>
 
         <hr />
 
-        {/* Second group: optional fields */}
         <div className="form-group">
           <div className="form-row">
             <label htmlFor="referral">How did you hear about us?</label>
-            <input
-              id="referral"
-              type="text"
-              name="referral"
-              value={form.referral}
-              onChange={handleChange}
-              placeholder="Optional"
-            />
+            <div className="form-field-container">
+              <input
+                id="referral"
+                type="text"
+                name="referral"
+                value={form.referral}
+                onChange={handleChange}
+                placeholder="Optional"
+              />
+            </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="dob">Your DOB (date of birth):</label>
-            <input
-              id="dob"
-              type="date"
-              name="dob"
-              value={form.dob}
-              onChange={handleChange}
-            />
+            <div className="form-field-container">
+              <input
+                id="dob"
+                type="date"
+                name="dob"
+                value={form.dob}
+                onChange={handleChange}
+              />
+            </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="occupation">What do you do?</label>
-            <select
-              id="occupation"
-              name="occupation"
-              value={form.occupation}
-              onChange={handleChange}
-            >
-              <option value="">Select your occupation</option>
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-              <option value="designer">Designer</option>
-              <option value="developer">Developer</option>
-              <option value="writer">Writer</option>
-              <option value="entrepreneur">Entrepreneur</option>
-              <option value="other">Other</option>
-            </select>
+            <div className="form-field-container">
+              <select
+                id="occupation"
+                name="occupation"
+                value={form.occupation}
+                onChange={handleChange}
+              >
+                <option value="">Select your occupation</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="designer">Designer</option>
+                <option value="developer">Developer</option>
+                <option value="writer">Writer</option>
+                <option value="entrepreneur">Entrepreneur</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
           </div>
         </div>
 

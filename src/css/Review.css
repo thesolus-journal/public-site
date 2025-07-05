@@ -1,4 +1,4 @@
-.contact-page {
+.review-page {
   max-width: 100vw;
   padding: var(--space-md);
   box-sizing: border-box;
@@ -6,32 +6,20 @@
   color: var(--text-dark);
 }
 
-.contact-page h2 {
+.review-page h2 {
   margin-bottom: var(--space-lg);
   font-weight: 700;
   font-size: var(--font-size-xl);
 }
 
-.contact-intro {
+.review-intro {
   font-size: var(--font-size-md);
   line-height: 1.6;
   margin-bottom: var(--space-lg);
   text-align: left;
 }
 
-.contact-intro a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.contact-intro a:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-  padding: var(--space-xs) var(--space-sm);
-}
-
-.contact-form {
+.review-form {
   width: 100%;
   max-width: clamp(600px, 80vw, 900px); /* Control overall form width */
   margin-left: var(--space-md); /* Align left with title */
@@ -126,8 +114,33 @@ hr {
   cursor: not-allowed;
 }
 
+.star-rating {
+  display: flex;
+  justify-content: flex-start; /* Align stars to the left */
+}
+
+.star-rating button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: white; /* White fill for the star */
+  text-shadow: -1px -1px 0 var(--border-color),  
+               1px -1px 0 var(--border-color),
+               -1px 1px 0 var(--border-color),
+               1px 1px 0 var(--border-color); /* Outline color */
+  padding: 0;
+  margin: 0;
+}
+
+.star-rating button.on .star {
+  color: black; /* Filled star color */
+  text-shadow: none; /* Remove outline when filled */
+}
+
 @media (max-width: 800px) {
-  .contact-form {
+  .review-form {
     margin: 0 auto; /* Center the form */
   }
 
@@ -156,7 +169,7 @@ hr {
     max-width: 100%; /* Ensure form field container takes full width */
   }
 
-  .contact-page h2 {
+  .review-page h2 {
     text-align: center;
   }
 }

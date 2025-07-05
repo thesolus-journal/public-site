@@ -1,0 +1,211 @@
+.cart-page h2 {
+  margin-bottom: var(--space-md);
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--text-dark);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border-radius: var(--space-xs);
+  border: 1px solid var(--text-dark);
+  padding: var(--space-sm);
+  box-shadow: 0 0 var(--space-xs) rgba(0, 0, 0, 0.05);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.item-title {
+  font-size: var(--font-size-md);
+  color: var(--text-dark);
+  flex: 3;
+  min-width: clamp(10rem, 15vw, 160px);
+}
+
+.item-personalization,
+.item-class {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  margin-top: var(--space-xs);
+}
+
+.item-controls-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 2;
+  justify-content: flex-end;
+  min-width: clamp(10rem, 15vw, 180px);
+}
+
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.item-controls button {
+  background-color: transparent;
+  border: 1px solid var(--text-dark);
+  color: var(--text-dark);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--space-xs);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-controls button:hover {
+  background-color: var(--text-dark);
+  color: var(--primary-bg);
+}
+
+.item-controls span {
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  min-width: var(--space-lg);
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.item-total {
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  min-width: clamp(6rem, 8vw, 100px);
+  text-align: right;
+  color: var(--text-dark);
+}
+
+.cart-total {
+  margin-top: var(--space-md);
+  text-align: right;
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.proceed-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-sm);
+}
+
+.proceed-button button {
+  background-color: var(--text-dark);
+  color: var(--primary-bg);
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--space-xs);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.proceed-button button:hover {
+  background-color: #333;
+}
+
+/* Optional: Empty cart styling */
+.cart-page h3 {
+  margin-bottom: var(--space-md);
+}
+
+.cart-page p {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--text-light);
+  padding: var(--space-lg);
+}
+
+.coupon-section {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  width: clamp(5rem, 40%, 40rem);
+}
+
+.coupon-section input[type="text"] {
+  flex: 1;
+  padding: var(--space-xs);
+  font-size: var(--font-size-md);
+  border: 1px solid var(--text-dark);
+  border-radius: var(--space-xs);
+  outline-offset: 2px;
+  transition: border-color 0.2s ease-in-out;
+  font-family: inherit;
+  color: var(--text-dark);
+  background-color: transparent;
+}
+
+.coupon-section input[type="text"]:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.coupon-section button {
+  background-color: var(--text-dark);
+  color: var(--primary-bg);
+  border: none;
+  border-radius: var(--space-xs);
+  padding: var(--space-sm);
+  width: clamp(6rem, 15vw, 8rem);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.coupon-section button:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.coupon-section button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+.invalid-coupon {
+  border-color: var(--error-color);
+  box-shadow: 0 0 5px var(--error-color);
+}
+.total-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-md);
+  color: var(--text-dark);
+}
+
+.total-row .label {
+  min-width: clamp(150px, 20vw, 180px);
+  text-align: right;
+  font-weight: 500;
+}
+
+.total-row .value {
+  min-width: clamp(120px, 15vw, 140px);
+  text-align: right;
+  font-weight: 600;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  padding: 0 var(--space-sm);
+}
+
+.remove-item:hover {
+  color: #333;
+}
+

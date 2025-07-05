@@ -1,135 +1,150 @@
 .shipping-page {
   max-width: 100vw;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: var(--space-md);
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  color: #222;
+  color: var(--text-dark);
 }
 
 .shipping-page h2 {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   font-weight: 700;
+  font-size: var(--font-size-xl);
 }
 
 .shipping-form {
   width: 100%;
-  max-width: none;
-}
-
-.form-group {
-  margin-bottom: 30px;
+  max-width: clamp(600px, 80vw, 900px); /* Control overall form width */
+  margin-left: var(--space-md); /* Align left with title */
+  margin-right: auto; /* Allow it to push to the left */
 }
 
 .form-row {
   display: flex;
-  align-items: flex-start; /* Align label and input top edges */
-  margin-bottom: 15px;
+  justify-content: space-between; /* Push label and input container apart */
+  align-items: flex-start; /* Align labels to the top of the row */
+  margin-bottom: var(--space-md);
 }
 
-/* Fixed label width for perfect alignment */
 .form-row label {
-  flex: 0 0 clamp(150px, 20vw, 280px);
-  margin-right: 15px;
+  flex: 0 0 auto; /* Allow label to take its content width */
+  max-width: clamp(120px, 20vw, 200px); /* Prevent label from becoming too wide */
+  margin-right: var(--space-md);
   font-weight: 600;
   text-align: left;
   user-select: none;
-  padding-top: 8px;
   white-space: nowrap;
+  font-size: var(--font-size-md);
+  padding-top: var(--space-xs); /* Small padding to align text baseline */
+}
+
+.form-field-container {
+  flex: 1; /* Take up remaining space */
+  max-width: clamp(300px, 50vw, 500px); /* Ensure all input fields end at the same point */
+  display: flex;
+  flex-direction: column;
 }
 
 .form-row input,
 .form-row textarea,
 .form-row select {
-  flex: 1 1 auto;
-  padding: 8px 10px;
-  font-size: 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: 4px;
+  width: 100%; /* Take full width of its container */
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-md);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--space-xs);
   transition: border-color 0.2s ease-in-out;
   font-family: inherit;
   outline-offset: 2px;
   background-color: transparent;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 /* Focus state */
 .form-row input:focus,
 .form-row textarea:focus,
 .form-row select:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 0px #4a90e2;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0px var(--accent-color);
   outline: none;
 }
 
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 30px 0;
+  margin: var(--space-lg) 0;
 }
 
 .form-navigation {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
 }
 
 .form-navigation button {
-  height: 2.5rem;
-  width: 10rem;
-  font-size: 1.25rem;
-  border-radius: 15px 15px 15px 15px;
+  height: auto;
+  min-width: clamp(100px, 15vw, 120px); /* Ensure consistent width for 'Next' and 'Sending...' */
+  font-size: var(--font-size-md);
+  border-radius: var(--space-xs);
   border: none;
   outline: none;
   box-shadow: none;
-  background-color: #000;
+  background-color: var(--text-dark);
   color: white;
   cursor: pointer;
-  padding: 0.5rem 1.0rem;
-  font-size: inherit;
+  padding: var(--space-sm) var(--space-md);
+  transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 .form-navigation button:hover {
-  background-color: #333;
+  background-color: #444;
 }
 
 .form-navigation button:disabled {
-  /* background-color: #a0c1f7; */
   background-color: #888888;
   cursor: not-allowed;
-{}
 }
 
 .totals-summary {
-  margin-top: 20px;
+  margin-top: var(--space-lg);
   font-weight: bold;
 }
 
-.form-navigation {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
+@media (max-width: 800px) {
+  .shipping-form {
+    margin: 0 auto; /* Center the form */
+  }
 
-
-@media (max-width: 600px) {
   .form-row {
     flex-direction: column;
     align-items: stretch; /* make input full width */
+    padding-right: var(--space-md); /* Add gap on the right */
   }
 
   .form-row label {
     flex: none;
     margin-right: 0;
-    margin-bottom: 6px; /* space between label and input */
+    margin-bottom: var(--space-xs); /* space between label and input */
     padding-top: 0;
     white-space: normal; /* allow label to wrap */
+    max-width: unset; /* Allow label to take full available width */
   }
 
   .form-row input,
   .form-row textarea,
   .form-row select {
-    width: 90%; /* full width input */
+    width: 100%; /* full width input */
+  }
+
+  .form-field-container {
+    max-width: 100%; /* Ensure form field container takes full width */
+  }
+
+  .shipping-page h2 {
+    text-align: center;
   }
 }
+
 
