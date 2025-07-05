@@ -10,11 +10,13 @@ function Home() {
   const navigate = useNavigate();
   return (
     <div className="homepage">
-      <video className="content" autoPlay muted loop>
-        <source src="writing.mp4" type="video/mp4" />
+      <video className="content" autoPlay muted loop playbackRate={0.8}>
+        <source src="Website video.mp4" type="video/mp4" />
       </video>
+      <div className="video-overlay"></div>
       <div className="text">
         <p className="title">coming soon</p>
+        <p className="date-text">11.07.2025</p>
         <p className="narration">
           We're about to launch a premium notebook collection designed for busy
           minds who long to slow down and think deeper
