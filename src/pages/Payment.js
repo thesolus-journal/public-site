@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   HiOutlineShoppingCart,
@@ -8,7 +8,6 @@ import {
 } from "react-icons/hi";
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
-import { useMemo } from "react";
 import "../css/Payment.css";
 
 /**
@@ -21,6 +20,7 @@ function Payment() {
   const navigate = useNavigate();
   const { clearCart, cart } = useProductContext();
   const { clearCoupon, discountPercent } = useCouponContext();
+  const [displayAmount, setDisplayAmount] = useState(0);
 
   const totalBeforeDiscount = useMemo(
     () =>
@@ -31,7 +31,21 @@ function Payment() {
   const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
   const totalAfterDiscount = totalBeforeDiscount - discountAmount;
 
+  useEffect(() => {
+    if (cart.length > 0) {
+      setDisplayAmount(totalAfterDiscount);
+    } else {
+      const storedAmount = sessionStorage.getItem("paymentAmount");
+      if (storedAmount) {
+        setDisplayAmount(parseFloat(storedAmount));
+      } else {
+        setDisplayAmount(0);
+      }
+    }
+  }, [cart, totalAfterDiscount]);
+
   function handleConfirmPayment() {
+    sessionStorage.setItem("paymentAmount", totalAfterDiscount);
     clearCart();
     clearCoupon();
     navigate("/confirmation");
@@ -45,7 +59,7 @@ function Payment() {
         <div className="barcode">
           <img src="qr_code.png" alt="Payment Barcode" />
           <div className="total-amount-display">
-            Total to Pay: VND {totalAfterDiscount.toLocaleString()}
+            Total to Pay: VND {displayAmount.toLocaleString()}
           </div>
         </div>
 
