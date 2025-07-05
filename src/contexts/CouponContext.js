@@ -20,6 +20,13 @@ const CouponContext = createContext();
  */
 export const useCouponContext = () => useContext(CouponContext);
 
+// In the future, you might fetch this from an API
+const availableCoupons = [
+  { code: "DISCOUNT10", discount: 10 },
+  { code: "SOLUS20", discount: 20 },
+  { code: "WELCOME5", discount: 5 },
+];
+
 /**
  * CouponProvider is a component that provides the CouponContext to its children.
  * It manages the coupon state and provides functions to interact with coupons.
@@ -32,9 +39,12 @@ export const CouponProvider = ({ children }) => {
   const [couponCode, setCouponCode] = useState("");
 
   const applyCoupon = (code) => {
-    if (code.trim().toUpperCase() === "DISCOUNT10") {
-      setDiscountPercent(10);
-      setCouponCode("DISCOUNT10");
+    const normalizedCode = code.trim().toUpperCase();
+    const coupon = availableCoupons.find((c) => c.code === normalizedCode);
+
+    if (coupon) {
+      setDiscountPercent(coupon.discount);
+      setCouponCode(coupon.code);
       return true;
     } else {
       setDiscountPercent(0);

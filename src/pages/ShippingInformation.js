@@ -15,7 +15,7 @@ const SCRIPT_URL =
 function ShippingInformation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { cart } = useProductContext();
-  const { discountPercent = 0 } = useCouponContext() || {};
+  const { discountPercent = 0, couponCode } = useCouponContext() || {};
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -73,9 +73,13 @@ function ShippingInformation() {
     formData.append("Occupation", form.occupation);
     formData.append("Referral", form.referral);
     formData.append("CartItems", cartItemsString);
-    formData.append("TotalBeforeDiscount", totalBeforeDiscount.toLocaleString());
+    formData.append(
+      "TotalBeforeDiscount",
+      totalBeforeDiscount.toLocaleString(),
+    );
     formData.append("DiscountAmount", discountAmount.toLocaleString());
     formData.append("Total", totalAmount.toLocaleString());
+    formData.append("CouponCode", couponCode);
 
     try {
       const response = await fetch(SCRIPT_URL, {
