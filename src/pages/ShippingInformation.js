@@ -28,13 +28,18 @@ function ShippingInformation() {
     referral: "",
   });
 
-  const totalAmount = useMemo(() => {
-    const totalBeforeDiscount = cart.reduce(
+  const { totalBeforeDiscount, discountAmount, totalAmount } = useMemo(() => {
+    const subtotal = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0,
     );
-    const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
-    return totalBeforeDiscount - discountAmount;
+    const discount = (subtotal * discountPercent) / 100;
+    const finalTotal = subtotal - discount;
+    return {
+      totalBeforeDiscount: subtotal,
+      discountAmount: discount,
+      totalAmount: finalTotal,
+    };
   }, [cart, discountPercent]);
 
   const handleChange = (e) => {
@@ -49,12 +54,14 @@ function ShippingInformation() {
     setIsSubmitting(true);
 
     const cartItemsString = cart
-      .map(
-        (item) =>
-          `${item.name} x${item.quantity} (${(
-            item.price * item.quantity
-          ).toLocaleString()} VND)`,
-      )
+      .map((item) => {
+        const name = item.personalization
+          ? `${item.name} (Personalized: ${item.personalization})`
+          : item.name;
+        return `${name} x${item.quantity} (${(
+          item.price * item.quantity
+        ).toLocaleString()} VND)`;
+      })
       .join(", ");
 
     const formData = new FormData();
@@ -66,6 +73,8 @@ function ShippingInformation() {
     formData.append("Occupation", form.occupation);
     formData.append("Referral", form.referral);
     formData.append("CartItems", cartItemsString);
+    formData.append("TotalBeforeDiscount", totalBeforeDiscount.toLocaleString());
+    formData.append("DiscountAmount", discountAmount.toLocaleString());
     formData.append("Total", totalAmount.toLocaleString());
 
     try {
