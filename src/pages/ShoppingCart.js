@@ -83,12 +83,12 @@ function ShoppingCart() {
 
   return (
     <div className="cart-page">
-      <h2>Checkout</h2>
-      <h3>Order Summary</h3>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
+          <h2>Checkout</h2>
+          <h3>Order Summary</h3>
           <div className="cart-items">{cart.map(renderCartItem)}</div>
 
           <div className="coupon-section">

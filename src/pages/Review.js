@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../css/Review.css";
 
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxNjNhtE-jXRQip0mGZ6Zq_bTWwziBOI8JzfLN3HbRpra9P9bWeDQg-d3bBdLwPQm0R/exec"; // Placeholder URL
+
 /**
  * Review component displays a form for users to leave a review.
  * @component
@@ -15,6 +18,7 @@ function Review() {
   });
 
   const [hoverRating, setHoverRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,17 +37,39 @@ function Review() {
     setHoverRating(0);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    console.log("Review submitted:", formData);
-    alert("Thank you for your review! We appreciate your feedback.");
-    setFormData({
-      name: "",
-      email: "",
-      rating: 0,
-      review: "",
-    });
+    setIsSubmitting(true);
+
+    const dataToSend = new FormData();
+    dataToSend.append("Name", formData.name);
+    dataToSend.append("Email", formData.email);
+    dataToSend.append("Rating", formData.rating);
+    dataToSend.append("Review", formData.review);
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: dataToSend,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      alert("Thank you for your review! We appreciate your feedback.");
+      setFormData({
+        name: "",
+        email: "",
+        rating: 0,
+        review: "",
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -127,7 +153,13 @@ function Review() {
         </div>
 
         <div className="form-navigation">
-          <button type="submit" className="submit-button">Submit Review</button>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Submit"}
+          </button>
         </div>
       </form>
     </div>

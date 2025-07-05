@@ -20,12 +20,6 @@ import BankTransfer from "./pages/BankTransfer";
 import NavigationBar from "./components/NavigationBar";
 import BottomBar from "./components/BottomBar";
 
-/**
- * App component serves as the main entry point for the application.
- * It sets up the routing, product context, and coupon context.
- * @component
- * @returns {JSX.Element} The main application component.
- */
 function App() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -44,7 +38,7 @@ function App() {
               <Route path="/contact-us" element={<Contact />} />
               <Route path="/shopping-cart" element={<ShoppingCart />} />
               <Route path="/payment" element={<Payment />} />
-              <Route path="/zalopay" element={<ZaloPay />} />
+              <Route path="/z40p4y12568111" element={<ZaloPay />} />
               <Route path="/confirmation" element={<Confirmation />} />
               <Route
                 path="/shipping-information"

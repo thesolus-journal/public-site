@@ -87,11 +87,14 @@ hr {
   justify-content: flex-end;
   gap: var(--space-sm);
   margin-top: var(--space-lg);
+  max-width: clamp(300px, 50vw, 500px); /* Align with input fields */
+  margin-left: auto; /* Push to the right */
+  margin-right: 0;
 }
 
 .form-navigation button {
   height: auto;
-  min-width: clamp(100px, 15vw, 120px); /* Ensure consistent width for 'Next' and 'Sending...' */
+  width: clamp(100px, 15vw, 120px); /* Fixed width using clamp */
   font-size: var(--font-size-md);
   border-radius: var(--space-xs);
   border: none;
@@ -142,6 +145,10 @@ hr {
 @media (max-width: 800px) {
   .review-form {
     margin: 0 auto; /* Center the form */
+  }
+
+  .form-navigation {
+    margin-right: auto; /* Ensure no extra margin on the right */
   }
 
   .form-row {

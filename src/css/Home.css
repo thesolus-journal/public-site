@@ -21,11 +21,9 @@
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  padding: var(--space-md);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.5);
   width: clamp(300px, 80%, 600px);
   z-index: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .homepage .title {

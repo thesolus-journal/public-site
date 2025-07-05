@@ -20,6 +20,14 @@
   width: 100%;
 }
 
+.total-amount-display {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-dark);
+}
+
 .payment-content .process-steps {
   margin-left: var(--space-lg);
   margin-top: var(--space-lg);
@@ -122,4 +130,3 @@
     margin-top: 0rem;
   }
 }
-

@@ -1,6 +1,6 @@
 .navigation-bar {
   background: var(--secondary-bg);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   width: 100%;
   box-sizing: border-box;
@@ -10,8 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: clamp(900px, 90vw, 1200px);
-  margin: 0 auto;
+  padding-left: 0;
+  padding-right: var(--space-md);
 }
 
 .brand-link {
@@ -56,14 +56,16 @@
   color: white;
   font-size: var(--font-size-xs);
   font-weight: bold;
-  border-radius: var(--space-xs); /* Rectangular shape */
+  border-radius: var(--space-xs);
   padding: 1px 4px;
-  /* Removed min-width and height to allow rectangular shape */
+  min-width: 1.5rem; /* Fixed width */
+  height: 1.5rem; /* Fixed height */
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1; /* Adjust line-height for vertical centering */
+  line-height: 1;
   box-sizing: border-box;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -71,16 +73,21 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
+    padding-left: 0;
+  }
+
+  .brand-logo {
+    height: clamp(4rem, 9vw, 5rem); /* Increased size for mobile */
   }
 
   .nav-links {
-    gap: var(--space-sm);
+    gap: var(--space-xs); /* Reduced gap */
     justify-content: center;
     flex-wrap: wrap;
   }
 
   .nav-link {
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    padding: var(--space-xs) var(--space-sm);
+    font-size: clamp(0.75rem, 1.8vw, 0.85rem); /* Slightly smaller font */
+    padding: var(--space-xs); /* Reduced padding */
   }
 }

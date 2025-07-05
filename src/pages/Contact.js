@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Contact.css";
 
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxPr67q1E7aletsvL5Pr7NMWRhpgmicHqjrMcoWCsfX_JFfsLUp_tV_d5L-zSIXtLTK/exec";
+
 /**
  * Contact component displays a contact form for user inquiries.
  * @component
@@ -15,24 +18,48 @@ function Contact() {
     topic: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      topic: "",
-      message: "",
-    });
+    setIsSubmitting(true);
+
+    const dataToSend = new FormData();
+    dataToSend.append("Name", formData.name);
+    dataToSend.append("Email", formData.email);
+    dataToSend.append("Phone", formData.phone);
+    dataToSend.append("Topic", formData.topic);
+    dataToSend.append("Message", formData.message);
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: dataToSend,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      alert("Thank you for your message! We will get back to you soon.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        topic: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -100,13 +127,25 @@ function Contact() {
               required
             >
               <option value="">Select a topic</option>
-              <option value="order_question">I have a question about my order</option>
-              <option value="payment_help">I need help with payment or checkout</option>
-              <option value="discount_code">My discount code isn't working</option>
+              <option value="order_question">
+                I have a question about my order
+              </option>
+              <option value="payment_help">
+                I need help with payment or checkout
+              </option>
+              <option value="discount_code">
+                My discount code isn't working
+              </option>
               <option value="feedback">I'd love to leave some feedback</option>
-              <option value="website_issue">I found an issue with the website</option>
-              <option value="collaboration">I want to collaborate or partner with you</option>
-              <option value="wholesale">I'm interested in wholesale options</option>
+              <option value="website_issue">
+                I found an issue with the website
+              </option>
+              <option value="collaboration">
+                I want to collaborate or partner with you
+              </option>
+              <option value="wholesale">
+                I'm interested in wholesale options
+              </option>
               <option value="other">Something else not listed</option>
             </select>
           </div>
@@ -128,7 +167,13 @@ function Contact() {
         </div>
 
         <div className="form-navigation">
-          <button type="submit" className="submit-button">Send Message</button>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send"}
+          </button>
         </div>
       </form>
     </div>

@@ -99,11 +99,14 @@ hr {
   justify-content: flex-end;
   gap: var(--space-sm);
   margin-top: var(--space-lg);
+  width: clamp(300px, 50vw, 500px); /* Same width as input fields */
+  margin-left: calc(clamp(120px, 20vw, 200px) + var(--space-md)); /* Align start with input fields */
+  margin-right: 0; /* Ensure no extra margin on the right */
 }
 
 .form-navigation button {
   height: auto;
-  min-width: clamp(100px, 15vw, 120px); /* Ensure consistent width for 'Next' and 'Sending...' */
+  width: clamp(100px, 15vw, 120px); /* Fixed width using clamp */
   font-size: var(--font-size-md);
   border-radius: var(--space-xs);
   border: none;
@@ -129,6 +132,10 @@ hr {
 @media (max-width: 800px) {
   .contact-form {
     margin: 0 auto; /* Center the form */
+  }
+
+  .form-navigation {
+    margin-right: auto; /* Ensure no extra margin on the right */
   }
 
   .form-row {

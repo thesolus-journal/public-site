@@ -1,11 +1,14 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import {
   HiOutlineShoppingCart,
   HiOutlineCreditCard,
   HiOutlineMail,
   HiOutlineTruck,
   HiOutlineCube,
+  HiArrowLeft,
+  HiArrowRight,
+  HiOutlineSupport,
 } from "react-icons/hi";
 import "../css/Confirmation.css";
 
@@ -15,6 +18,18 @@ import "../css/Confirmation.css";
  */
 function Confirmation() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="confirmation-page">
@@ -53,9 +68,67 @@ function Confirmation() {
           </div>
         </div>
       </div>
-      <button className="home-button" onClick={() => navigate("/")}>
-        Back to Homepage
-      </button>
+
+      <div className="confirmation-questions">
+        <div className="question-item">
+          <div
+            className="icon-circle-small"
+            onClick={() => navigate("/payment")}
+          >
+            <HiArrowLeft size={20} />
+          </div>
+          <p>
+            {isMobile
+              ? "I have NOT pay successfully."
+              : "Oops I have NOT pay successfully, how to handle this?"}
+          </p>
+        </div>
+        <div className="question-item">
+          <div className="icon-circle-small" onClick={() => navigate("/faq")}>
+            <HiArrowRight size={20} />
+          </div>
+          <p>
+            {isMobile
+              ? "When will I receive the order?"
+              : "Done with the payment, when will I receive my order?"}
+          </p>
+        </div>
+        <div className="question-item">
+          <div
+            className="icon-circle-small"
+            onClick={() => navigate("/contact-us")}
+          >
+            <HiOutlineSupport size={20} />
+          </div>
+          <p>
+            {isMobile ? (
+              <>
+                Need help?{" "}
+                <a
+                  href="https://www.instagram.com/thesolus.journal/"
+                  target="https://www.instagram.com/thesolus.journal/"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>{" "}
+                or <Link to="/contact-us">here</Link>.
+              </>
+            ) : (
+              <>
+                Need help? Contact us on{" "}
+                <a
+                  href="https://www.instagram.com/thesolus.journal/"
+                  target="https://www.instagram.com/thesolus.journal/"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>{" "}
+                or leave your message <Link to="/contact-us">here</Link>.
+              </>
+            )}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

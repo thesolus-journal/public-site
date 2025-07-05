@@ -8,6 +8,7 @@ import {
 } from "react-icons/hi";
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
+import { useMemo } from "react";
 import "../css/Payment.css";
 
 /**
@@ -18,8 +19,17 @@ import "../css/Payment.css";
  */
 function Payment() {
   const navigate = useNavigate();
-  const { clearCart } = useProductContext();
-  const { clearCoupon } = useCouponContext();
+  const { clearCart, cart } = useProductContext();
+  const { clearCoupon, discountPercent } = useCouponContext();
+
+  const totalBeforeDiscount = useMemo(
+    () =>
+      cart.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0),
+    [cart],
+  );
+
+  const discountAmount = (totalBeforeDiscount * discountPercent) / 100;
+  const totalAfterDiscount = totalBeforeDiscount - discountAmount;
 
   function handleConfirmPayment() {
     clearCart();
@@ -34,6 +44,9 @@ function Payment() {
       <div className="payment-content">
         <div className="barcode">
           <img src="qr_code.png" alt="Payment Barcode" />
+          <div className="total-amount-display">
+            Total to Pay: VND {totalAfterDiscount.toLocaleString()}
+          </div>
         </div>
 
         <div className="process-steps">
