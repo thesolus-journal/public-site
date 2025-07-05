@@ -86,7 +86,7 @@ function Personalize() {
             <h4>1st edition - Premium</h4>
             <p>Journaling in A5 size (148 x 210 mm)</p>
             <p>Hardcover available in two colors</p>
-            <p>Paper: 80 gsm, ivory-colored</p>
+            <p>Paper: 80 gsm, white</p>
             <p>Please see the detailed specifications below</p>
             <h4>Color:</h4>
             <div className="color-options">
