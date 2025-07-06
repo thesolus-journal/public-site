@@ -35,14 +35,6 @@ function Personalize() {
         originalPrice: 189000,
         poster: coverMatcha,
       },
-      bundle: {
-        id: "3",
-        name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
-        class: "Premium",
-        price: 315000,
-        originalPrice: 378000,
-        poster: null, // No single poster for bundle
-      },
     }),
     [],
   );
@@ -88,10 +80,11 @@ function Personalize() {
         left: "1%",
         transform: "rotate(21deg)",
         fontSize: `clamp(${8.5 * scaleFactor}px, ${
-          1.28 * scaleFactor
+          0.9 * scaleFactor
         }vw, ${17 * scaleFactor}px)`,
         width: "60%",
         textAlign: "center",
+        color: "#4F776F",
       };
     } else if (variant === "matcha") {
       return {
@@ -99,10 +92,11 @@ function Personalize() {
         left: "10%",
         transform: "rotate(1deg)",
         fontSize: `clamp(${9 * scaleFactor}px, ${
-          1.35 * scaleFactor
+          1.0 * scaleFactor
         }vw, ${18 * scaleFactor}px)`,
         width: "60%",
         textAlign: "center",
+        color: "#515151",
       };
     }
     return {}; // Default or empty styles
@@ -177,12 +171,6 @@ function Personalize() {
                 }`}
                 onClick={() => handleColorChange("matcha")}
               ></div>
-              <div
-                className={`color-square bundle ${
-                  color === "bundle" ? "selected" : ""
-                }`}
-                onClick={() => handleColorChange("bundle")}
-              ></div>
             </div>
             <h4>Price:</h4>
             <div className="price-display">
@@ -200,7 +188,10 @@ function Personalize() {
                       )}
                       %
                     </span>{" "}
-                    from {formatPrice(baseProduct.originalPrice)}
+                    % from{" "}
+                    <span className="original-price">
+                      {formatPrice(baseProduct.originalPrice)}
+                    </span>
                   </span>
                 </p>
               ) : (

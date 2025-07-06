@@ -18,7 +18,8 @@
   padding: var(--space-xs) var(--space-sm);
   font-size: var(--font-size-sm);
   border-radius: var(--space-xs);
-  font-style: italic;
+  /* font-style: italic; */
+  font-family: 'Quicksand', sans-serif;
   max-width: 70%;
   overflow-wrap: break-word;
 }
@@ -124,6 +125,29 @@
 .color-square.selected {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+.price-display {
+  margin-top: -1rem;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+}
+
+.save-percentage {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.current-price {
+  font-weight: bold;
+  color: var(--text-dark);
 }
 
 .bundle-image-container {
