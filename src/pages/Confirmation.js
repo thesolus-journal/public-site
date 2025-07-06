@@ -123,7 +123,7 @@ function Confirmation() {
                 >
                   Instagram
                 </a>{" "}
-                or leave your message <Link to="/contact-us">here</Link>.
+                or <Link to="/contact-us">here</Link>.
               </>
             )}
           </p>
