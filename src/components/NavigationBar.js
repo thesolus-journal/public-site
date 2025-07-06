@@ -51,6 +51,7 @@ function NavigationBar() {
             {isMobile ? "PRODUCT" : "OUR PRODUCT"}
           </NavItem>
           <NavItem to="/personalize">PERSONALIZE</NavItem>
+          <NavItem to="/preview">PREVIEW</NavItem>
           <NavItem to="/shopping-cart">
             <span>{isMobile ? "CART" : "SHOPPING CART"}</span>
             {totalCartItems > 0 && (
