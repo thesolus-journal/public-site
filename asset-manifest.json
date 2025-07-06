@@ -1,15 +1,36 @@
 {
   "files": {
-    "main.css": "/static/css/main.97288aeb.css",
-    "main.js": "/static/js/main.d1986ff4.js",
+    "main.css": "/static/css/main.069b6bfd.css",
+    "main.js": "/static/js/main.bb1b0baf.js",
     "static/js/453.5699711c.chunk.js": "/static/js/453.5699711c.chunk.js",
+    "static/media/Website video.mp4": "/static/media/Website video.824dbca8a1274bc26a98.mp4",
+    "static/media/design_1.png": "/static/media/design_1.a7b110f85c03c644eaee.png",
+    "static/media/bundle_4.jpg": "/static/media/bundle_4.2c072918e7dbb55bfde9.jpg",
+    "static/media/design_3.png": "/static/media/design_3.021239a74ce43a40aeb9.png",
+    "static/media/design_2.png": "/static/media/design_2.5b08d8699c5f02a4f630.png",
+    "static/media/design_4.png": "/static/media/design_4.f23e42dcbf8767a8242a.png",
+    "static/media/oatmilk_4.jpg": "/static/media/oatmilk_4.784ffa6b0c0a4551d2d2.jpg",
+    "static/media/matcha_4.jpg": "/static/media/matcha_4.e209586befcac15ebbfb.jpg",
+    "static/media/matcha_2.jpg": "/static/media/matcha_2.fb35ac57ce74356ee30f.jpg",
+    "static/media/oatmilk_2.jpg": "/static/media/oatmilk_2.6bb9b21cdd62e2f46acb.jpg",
+    "static/media/matcha_cover.jpg": "/static/media/matcha_cover.ec6818e99c21448d7db5.jpg",
+    "static/media/matcha_1.jpg": "/static/media/matcha_1.f45db0b5fb3d650ace8c.jpg",
+    "static/media/oatmilk_1.jpg": "/static/media/oatmilk_1.1d0754e48ddec10e6b76.jpg",
+    "static/media/oatmilk_cover.jpg": "/static/media/oatmilk_cover.2257610e935fd95d5d6a.jpg",
+    "static/media/matcha_3.jpg": "/static/media/matcha_3.67becdbabd410bb7a615.jpg",
+    "static/media/oatmilk_3.jpg": "/static/media/oatmilk_3.dba3e510e38b88446283.jpg",
+    "static/media/cover_matcha.png": "/static/media/cover_matcha.1272721271a07e823a83.png",
+    "static/media/name_page.png": "/static/media/name_page.81736ad62ed882947bf9.png",
+    "static/media/blank_space.png": "/static/media/blank_space.94295905ccaca9ba6684.png",
+    "static/media/logo.png": "/static/media/logo.33c8049323427c7fd186.png",
+    "static/media/instagram.png": "/static/media/instagram.da03915281d040c26de5.png",
     "index.html": "/index.html",
-    "main.97288aeb.css.map": "/static/css/main.97288aeb.css.map",
-    "main.d1986ff4.js.map": "/static/js/main.d1986ff4.js.map",
+    "main.069b6bfd.css.map": "/static/css/main.069b6bfd.css.map",
+    "main.bb1b0baf.js.map": "/static/js/main.bb1b0baf.js.map",
     "453.5699711c.chunk.js.map": "/static/js/453.5699711c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.97288aeb.css",
-    "static/js/main.d1986ff4.js"
+    "static/css/main.069b6bfd.css",
+    "static/js/main.bb1b0baf.js"
   ]
 }
