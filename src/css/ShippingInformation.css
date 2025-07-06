@@ -113,6 +113,10 @@ hr {
 }
 
 @media (max-width: 800px) {
+  .shipping-page h2 {
+    font-size: var(--font-size-lg);
+  }
+
   .shipping-form {
     margin: 0 auto; /* Center the form */
   }
