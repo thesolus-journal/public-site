@@ -8,7 +8,6 @@ import {
 } from "react-icons/hi";
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
-import qrCode from "../assets/qr_code.png"; // Import the image
 import "../css/Payment.css";
 
 /**
@@ -58,7 +57,7 @@ function Payment() {
 
       <div className="payment-content">
         <div className="barcode">
-          <img src={qrCode} alt="Payment Barcode" />
+          <img src="qr_code.png" alt="Payment Barcode" />
           <div className="total-amount-display">
             Total to Pay: VND {displayAmount.toLocaleString()}
           </div>

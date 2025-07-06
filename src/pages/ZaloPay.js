@@ -1,19 +1,16 @@
-import qrCode from "../assets/qr_code.png";
-
 /**
  * ZaloPay component displays the ZaloPay payment method and instructions.
  * @component
  * @returns {JSX.Element} The ZaloPay page element.
  */
 function ZaloPay() {
-
   return (
     <div className="payment-page">
       <h2>Pay with ZaloPay</h2>
 
       <div className="payment-content">
         <div className="barcode">
-          <img src={qrCode} alt="Payment Barcode" />
+          <img src="qr_code.png" alt="Payment Barcode" />
         </div>
 
         <div className="">
