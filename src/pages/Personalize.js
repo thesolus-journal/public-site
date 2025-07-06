@@ -15,7 +15,6 @@ const matchaImage = coverMatcha;
  */
 function Personalize() {
   const [color, setColor] = useState("oatmilk");
-  const [mainImage, setMainImage] = useState(oatmilkImage);
   const [customText, setCustomText] = useState("");
 
   const productVariants = useMemo(
@@ -31,6 +30,12 @@ function Personalize() {
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
         price: 1000000,
         poster: coverMatcha,
+      },
+      bundle: {
+        id: "3",
+        name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
+        price: 1800000,
+        poster: null, // No single poster for bundle
       },
     }),
     [],
@@ -48,30 +53,36 @@ function Personalize() {
   );
 
   /**
-   * Handles the color change and updates the main image.
+   * Handles the color change.
    * @param {string} selectedColor - The newly selected color.
    */
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor);
-    setMainImage(selectedColor === "oatmilk" ? oatmilkImage : matchaImage);
   };
 
-  const getOverlayStyles = () => {
-    if (color === "oatmilk") {
+  const getOverlayStyles = (variant) => {
+    const isBundle = color === "bundle";
+    const scaleFactor = isBundle ? 0.5 : 1; // Scale down by 50% in bundle view
+
+    if (variant === "oatmilk") {
       return {
         top: "74%",
         left: "1%",
         transform: "rotate(21deg)",
-        fontSize: "clamp(8.5px, 1.28vw, 17px)",
+        fontSize: `clamp(${8.5 * scaleFactor}px, ${
+          1.28 * scaleFactor
+        }vw, ${17 * scaleFactor}px)`,
         width: "60%",
         textAlign: "center",
       };
-    } else if (color === "matcha") {
+    } else if (variant === "matcha") {
       return {
         top: "69%",
         left: "10%",
         transform: "rotate(1deg)",
-        fontSize: "clamp(9px, 1.35vw, 18px)",
+        fontSize: `clamp(${9 * scaleFactor}px, ${
+          1.35 * scaleFactor
+        }vw, ${18 * scaleFactor}px)`,
         width: "60%",
         textAlign: "center",
       };
@@ -84,17 +95,47 @@ function Personalize() {
       <h3 className="page-title">PERSONALIZE YOUR JOURNAL</h3>
       <div className="personalize-page">
         <div className="content">
-          <div className="main-image image-with-overlay">
-            <img src={mainImage} alt="Main product view" />
-            {customText && (
-              <div
-                className="personalization-overlay"
-                style={getOverlayStyles()}
-              >
-                {customText}
+          {color === "bundle" ? (
+            <div className="bundle-image-container">
+              <div className="main-image image-with-overlay">
+                <img src={oatmilkImage} alt="Oatmilk product view" />
+                {customText && (
+                  <div
+                    className="personalization-overlay"
+                    style={getOverlayStyles("oatmilk")}
+                  >
+                    {customText}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+              <div className="main-image image-with-overlay">
+                <img src={matchaImage} alt="Matcha product view" />
+                {customText && (
+                  <div
+                    className="personalization-overlay"
+                    style={getOverlayStyles("matcha")}
+                  >
+                    {customText}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="main-image image-with-overlay">
+              <img
+                src={color === "oatmilk" ? oatmilkImage : matchaImage}
+                alt="Main product view"
+              />
+              {customText && (
+                <div
+                  className="personalization-overlay"
+                  style={getOverlayStyles(color)}
+                >
+                  {customText}
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div className="interface">
           <div className="text">
@@ -117,6 +158,12 @@ function Personalize() {
                   color === "matcha" ? "selected" : ""
                 }`}
                 onClick={() => handleColorChange("matcha")}
+              ></div>
+              <div
+                className={`color-square bundle ${
+                  color === "bundle" ? "selected" : ""
+                }`}
+                onClick={() => handleColorChange("bundle")}
               ></div>
             </div>
 

@@ -12,6 +12,11 @@ import matchaSecond from "../assets/products/matcha/matcha_2.jpg";
 import matchaThird from "../assets/products/matcha/matcha_3.jpg";
 import matchaFourth from "../assets/products/matcha/matcha_4.jpg";
 
+import bundleFirst from "../assets/products/bundle/bundle_1.jpg";
+import bundleSecond from "../assets/products/bundle/bundle_2.jpg";
+import bundleThird from "../assets/products/bundle/bundle_3.jpg";
+import bundleFourth from "../assets/products/bundle/bundle_4.jpg";
+
 const oatmilkImages = [
   oatmilkFirst,
   oatmilkSecond,
@@ -19,6 +24,7 @@ const oatmilkImages = [
   oatmilkFourth,
 ];
 const matchaImages = [matchaFirst, matchaSecond, matchaThird, matchaFourth];
+const bundleImages = [bundleFirst, bundleSecond, bundleThird, bundleFourth];
 
 /**
  * Displays the main product page, allowing users to view product details,
@@ -45,11 +51,23 @@ function Products() {
         price: 1000000,
         poster: "chapter_01_02.jpeg",
       },
+      bundle: {
+        id: 3,
+        name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
+        class: "Premium",
+        price: 1800000,
+        poster: "chapter_01_03.jpeg",
+      },
     }),
     [],
   );
 
-  const images = color === "oatmilk" ? oatmilkImages : matchaImages;
+  const images =
+    color === "oatmilk"
+      ? oatmilkImages
+      : color === "matcha"
+      ? matchaImages
+      : bundleImages;
   const currentProduct = products[color];
 
   /**
@@ -59,7 +77,11 @@ function Products() {
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor);
     setMainImage(
-      selectedColor === "oatmilk" ? oatmilkImages[0] : matchaImages[0],
+      selectedColor === "oatmilk"
+        ? oatmilkImages[0]
+        : selectedColor === "matcha"
+        ? matchaImages[0]
+        : bundleImages[0],
     );
   };
 
@@ -104,6 +126,12 @@ function Products() {
                   color === "matcha" ? "selected" : ""
                 }`}
                 onClick={() => handleColorChange("matcha")}
+              ></div>
+              <div
+                className={`color-square bundle ${
+                  color === "bundle" ? "selected" : ""
+                }`}
+                onClick={() => handleColorChange("bundle")}
               ></div>
             </div>
           </div>

@@ -117,9 +117,24 @@
   background-color: #8fb78f;
 }
 
+.color-square.bundle {
+  background: linear-gradient(to top right, #fffbe7 50%, #8fb78f 50%);
+}
+
 .color-square.selected {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+.bundle-image-container {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.bundle-image-container .main-image {
+  flex: 1;
+  min-width: 0;
 }
 
 @media (max-width: 800px) {

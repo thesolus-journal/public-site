@@ -96,6 +96,10 @@
   background-color: #8fb78f;
 }
 
+.color-square.bundle {
+  background: linear-gradient(to top right, #fffbe7 50%, #8fb78f 50%);
+}
+
 .color-square.selected {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
