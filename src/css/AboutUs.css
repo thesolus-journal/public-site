@@ -1,3 +1,9 @@
+.about-page-container .page-title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+  text-align: left;
+}
+
 .about-page {
   display: flex;
   min-height: clamp(60vh, 80vh, 90vh);
@@ -17,30 +23,29 @@
   align-items: center;
 }
 
-.about-page .content img{
-  margin-top: var(--space-xl);
+.about-page .content img {
+  margin-top: var(--space-sm);
   margin-right: var(--space-md);
   width: 90%;
 }
 
 .about-page .text {
   width: clamp(12rem, 55vw, 50rem);
-  margin-top: var(--space-sm);
-  margin-left: var(--space-lg);
-}
-
-.about-page h3 {
-  font-size: var(--font-size-lg);
+  margin-right: var(--space-lg);
 }
 
 .about-page p {
   font-size: var(--font-size-md);
+  text-align: justify;
 }
 
-
 @media (max-width: 800px) {
+  .about-page-container .page-title {
+    text-align: center;
+  }
+
   .about-page {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: auto;
     align-items: center;
     justify-content: center;
