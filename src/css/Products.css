@@ -86,6 +86,7 @@
   border: 2px solid var(--border-color);
   cursor: pointer;
   border-radius: var(--space-xs);
+  margin-bottom: var(--space-sm);
 }
 
 .color-square.oatmilk {
@@ -103,6 +104,29 @@
 .color-square.selected {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+.price-display {
+  margin-top: -1rem;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  /* gap: var(--space-md); */
+}
+
+.save-percentage {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+.current-price {
+  font-weight: normal;
+  color: var(--text-dark);
 }
 
 @media (max-width: 800px) {

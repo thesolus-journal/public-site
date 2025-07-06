@@ -51,6 +51,22 @@ function Payment() {
     navigate("/confirmation");
   }
 
+  const formatPrice = (price) => {
+    const formatted = new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).formatToParts(price);
+    return {
+      number: formatted
+        .filter((part) => part.type !== "currency")
+        .map((part) => part.value)
+        .join(""),
+      symbol: formatted.find((part) => part.type === "currency").value,
+    };
+  };
+
+  const { number, symbol } = formatPrice(displayAmount);
+
   return (
     <div className="payment-page">
       <h2>SELF CHECKOUT!</h2>
@@ -59,7 +75,8 @@ function Payment() {
         <div className="barcode">
           <img src="qr_code.png" alt="Payment Barcode" />
           <div className="total-amount-display">
-            Total to Pay: VND {displayAmount.toLocaleString()}
+            Total to Pay: <span className="price-number">{number}</span>
+            <span className="price-symbol">{symbol}</span>
           </div>
         </div>
 

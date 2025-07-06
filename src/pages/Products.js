@@ -41,21 +41,24 @@ function Products() {
         id: 1,
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk",
         class: "Premium",
-        price: 1000000,
+        price: 169000,
+        originalPrice: 189000,
         poster: "chapter_01.jpeg",
       },
       matcha: {
         id: 2,
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
         class: "Premium",
-        price: 1000000,
+        price: 169000,
+        originalPrice: 189000,
         poster: "chapter_01_02.jpeg",
       },
       bundle: {
         id: 3,
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
         class: "Premium",
-        price: 1800000,
+        price: 315000,
+        originalPrice: 378000,
         poster: "chapter_01_03.jpeg",
       },
     }),
@@ -83,6 +86,18 @@ function Products() {
         ? matchaImages[0]
         : bundleImages[0],
     );
+  };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
+
+  const calculateSavePercentage = (originalPrice, price) => {
+    if (!originalPrice || !price) return 0;
+    return Math.round(((originalPrice - price) / originalPrice) * 100);
   };
 
   return (
@@ -133,6 +148,33 @@ function Products() {
                 }`}
                 onClick={() => handleColorChange("bundle")}
               ></div>
+            </div>
+            <h4>Price:</h4>
+            <div className="price-display">
+              {currentProduct.originalPrice ? (
+                <p className="price-info">
+                  <span className="current-price">
+                    {formatPrice(currentProduct.price)}
+                  </span>
+                  <span className="save-info">
+                    . Buy now to save{" "}
+                    <span className="save-percentage">
+                      {calculateSavePercentage(
+                        currentProduct.originalPrice,
+                        currentProduct.price,
+                      )}
+                      %
+                    </span>{" "}
+                    from {formatPrice(currentProduct.originalPrice)}
+                  </span>
+                </p>
+              ) : (
+                <p className="price-info">
+                  <span className="current-price">
+                    {formatPrice(currentProduct.price)}
+                  </span>
+                </p>
+              )}
             </div>
           </div>
           <div className="product">

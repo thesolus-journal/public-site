@@ -43,8 +43,8 @@ function ProductQuantity({ product, showPersonalizeButton = true }) {
 
   return (
     <>
-      <h4>Quantity:</h4>
       <div className="product-quantity">
+        <h4>Quantity:</h4>
         <div className="adjustor">
           <div className="display">
             <span className="quantity">{quantity}</span>

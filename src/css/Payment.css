@@ -29,6 +29,16 @@
   color: var(--text-dark);
 }
 
+.price-number {
+  margin-right: var(--space-xs);
+}
+
+.price-symbol {
+  font-size: var(--font-size-xl);
+  position: relative;
+  top: 4px;
+}
+
 .payment-content .process-steps {
   margin-left: var(--space-lg);
   margin-top: var(--space-lg);
@@ -125,6 +135,10 @@
     flex-direction: column;       /* stack children vertically */
     align-items: center;          /* center horizontally */
     gap: var(--space-md);
+  }
+
+  .price-symbol {
+    top: 3px;
   }
 
   .process-steps {

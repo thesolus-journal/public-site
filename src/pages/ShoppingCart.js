@@ -33,6 +33,13 @@ function ShoppingCart() {
     setIsInvalid(!success);
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
+
   const renderCartItem = (item) => {
     const isPersonalized =
       item.personalization || item.name.includes(" - Personalized (");
@@ -68,7 +75,7 @@ function ShoppingCart() {
             </button>
           </div>
           <div className="item-total">
-            VND {(item.price * item.quantity).toLocaleString()}
+            {formatPrice(item.price * item.quantity)}
           </div>
           <button
             className="remove-item"
@@ -113,13 +120,13 @@ function ShoppingCart() {
                 <div className="total-row">
                   <span className="label">Total before discount:</span>
                   <span className="value">
-                    {totalBeforeDiscount.toLocaleString()}
+                    {formatPrice(totalBeforeDiscount)}
                   </span>
                 </div>
                 <div className="total-row">
                   <span className="label">Discount ({discountPercent}%):</span>
                   <span className="value">
-                    -{discountAmount.toLocaleString()}
+                    -{formatPrice(discountAmount)}
                   </span>
                 </div>
                 <div className="total-row">
@@ -127,7 +134,7 @@ function ShoppingCart() {
                     <strong>Total after discount:</strong>
                   </span>
                   <span className="value">
-                    <strong>VND {totalAfterDiscount.toLocaleString()}</strong>
+                    <strong>{formatPrice(totalAfterDiscount)}</strong>
                   </span>
                 </div>
               </>
@@ -137,7 +144,7 @@ function ShoppingCart() {
                   <strong>Total:</strong>
                 </span>
                 <span className="value">
-                  <strong>VND {totalBeforeDiscount.toLocaleString()}</strong>
+                  <strong>{formatPrice(totalBeforeDiscount)}</strong>
                 </span>
               </div>
             )}

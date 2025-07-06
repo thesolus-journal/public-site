@@ -22,19 +22,25 @@ function Personalize() {
       oatmilk: {
         id: "1",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk",
-        price: 1000000,
+        class: "Premium",
+        price: 169000,
+        originalPrice: 189000,
         poster: coverOatmilk,
       },
       matcha: {
         id: "2",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
-        price: 1000000,
+        class: "Premium",
+        price: 169000,
+        originalPrice: 189000,
         poster: coverMatcha,
       },
       bundle: {
         id: "3",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
-        price: 1800000,
+        class: "Premium",
+        price: 315000,
+        originalPrice: 378000,
         poster: null, // No single poster for bundle
       },
     }),
@@ -58,6 +64,18 @@ function Personalize() {
    */
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor);
+  };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
+
+  const calculateSavePercentage = (originalPrice, price) => {
+    if (!originalPrice || !price) return 0;
+    return Math.round(((originalPrice - price) / originalPrice) * 100);
   };
 
   const getOverlayStyles = (variant) => {
@@ -165,6 +183,33 @@ function Personalize() {
                 }`}
                 onClick={() => handleColorChange("bundle")}
               ></div>
+            </div>
+            <h4>Price:</h4>
+            <div className="price-display">
+              {baseProduct.originalPrice ? (
+                <p className="price-info">
+                  <span className="current-price">
+                    {formatPrice(baseProduct.price)}
+                  </span>
+                  <span className="save-info">
+                    . Buy now to save{" "}
+                    <span className="save-percentage">
+                      {calculateSavePercentage(
+                        baseProduct.originalPrice,
+                        baseProduct.price,
+                      )}
+                      %
+                    </span>{" "}
+                    from {formatPrice(baseProduct.originalPrice)}
+                  </span>
+                </p>
+              ) : (
+                <p className="price-info">
+                  <span className="current-price">
+                    {formatPrice(baseProduct.price)}
+                  </span>
+                </p>
+              )}
             </div>
 
             <h4>Personalization:</h4>
