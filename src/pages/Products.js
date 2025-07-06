@@ -18,9 +18,13 @@ import bundleSecond from "../assets/products/bundle/bundle_2.jpg";
 import bundleThird from "../assets/products/bundle/bundle_3.jpg";
 import bundleFourth from "../assets/products/bundle/bundle_4.jpg";
 
-// import detailsFirst from "../assets/details/inside_1.jpg";
+import detailsFirst from "../assets/details/inside_1.jpg";
 import detailsSecond from "../assets/details/inside_2.jpg";
-import detailsThird from "../assets/details/inside_3.jpg";
+
+import galleryFirst from "../assets/gallery/gallery_1.jpg";
+import gallerySecond from "../assets/gallery/gallery_2.jpg";
+import galleryThird from "../assets/gallery/gallery_3.jpg";
+import galleryFourth from "../assets/gallery/gallery_4.jpg";
 
 const oatmilkImages = [
   oatmilkFirst,
@@ -170,7 +174,10 @@ function Products() {
                       )}
                       %
                     </span>{" "}
-                    from {formatPrice(currentProduct.originalPrice)}
+                    % % from{" "}
+                    <span className="original-price">
+                      {formatPrice(currentProduct.originalPrice)}
+                    </span>
                   </span>
                 </p>
               ) : (
@@ -190,8 +197,8 @@ function Products() {
       <div className="section-divider"></div>
       <div className="product-details-container">
         <div className="product-details-image">
+          <img src={detailsFirst} alt="Product Details 1" />
           <img src={detailsSecond} alt="Product Details 2" />
-          <img src={detailsThird} alt="Product Details 3" />
         </div>
         <div className="product-details-text">
           <div className="product-specifications">
@@ -243,6 +250,17 @@ function Products() {
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+      <div className="section-divider"></div>
+      <div className="product-photos-container">
+        <div className="product-photos-image">
+          <img src={galleryFirst} alt="Product Details 1" />
+          <img src={gallerySecond} alt="Product Details 2" />
+        </div>
+        <div className="product-photos-image">
+          <img src={galleryThird} alt="Product Details 1" />
+          <img src={galleryFourth} alt="Product Details 2" />
         </div>
       </div>
     </div>
