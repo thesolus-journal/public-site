@@ -85,3 +85,18 @@
 .subscribe-container .button:hover {
   background-color: #444;
 }
+
+.social-icon-link {
+  display: inline-block;
+  margin-right: var(--space-md);
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}

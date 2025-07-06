@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/BottomBar.css";
+import instagramIcon from "../assets/instagram.png";
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbz1eyhVQQsJ99T_BkwD6tQWsUuh1Deu4oREg_jpFH1UG7f1lxXtxDr02i6tOEGk7gwr/exec"; // Placeholder URL
@@ -89,11 +90,11 @@ function BottomBar() {
             href="https://www.instagram.com/thesolus.journal/"
             target="https://www.instagram.com/thesolus.journal/"
             rel="noreferrer"
-            className="bottom-link"
+            className="social-icon-link"
           >
-            Instagram
+            <img src={instagramIcon} alt="Instagram" className="social-icon" />
           </a>
-          <p>Support hours are Mon - Sun: 2pm - 10pm GMT+7.</p>
+          {/* <p>Support hours are Mon - Sun: 2pm - 10pm GMT+7.</p> */}
         </div>
         <div className="column">
           <h3>Customer Support</h3>
