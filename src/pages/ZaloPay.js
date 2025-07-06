@@ -1,5 +1,4 @@
-import React from "react";
-import "../css/Payment.css";
+import qrCode from "../assets/qr_code.png";
 
 /**
  * ZaloPay component displays the ZaloPay payment method and instructions.
@@ -14,7 +13,7 @@ function ZaloPay() {
 
       <div className="payment-content">
         <div className="barcode">
-          <img src="qr_code.png" alt="Payment Barcode" />
+          <img src={qrCode} alt="Payment Barcode" />
         </div>
 
         <div className="">

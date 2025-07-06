@@ -1,4 +1,5 @@
 import "../css/AboutUs.css";
+import chapter01 from "../assets/chapter_01.jpeg";
 
 /**
  * AboutUs component displays information about the company or individual behind the website.
@@ -59,7 +60,7 @@ function AboutUs() {
         </p>
       </div>
       <div className="content">
-        <img src="chapter_01.jpeg" alt="product"></img>
+        <img src={chapter01} alt="product"></img>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
+import WebsiteVideo from "../assets/Website video.mp4";
 
 /**
  * Home component displays the landing page with a video background and a call to action.
@@ -11,7 +12,7 @@ function Home() {
   return (
     <div className="homepage">
       <video className="content" autoPlay muted loop playbackRate={0.8}>
-        <source src="Website video.mp4" type="video/mp4" />
+        <source src={WebsiteVideo} type="video/mp4" />
       </video>
       <div className="video-overlay"></div>
       <div className="text">

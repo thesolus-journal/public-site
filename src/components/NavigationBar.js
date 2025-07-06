@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 import "../css/NavigationBar.css";
 import React, { useState, useEffect } from "react";
+import logo from "../assets/logo.png";
 
 /**
  * A reusable navigation link component that indicates active status.
@@ -42,7 +43,7 @@ function NavigationBar() {
     <nav className="navigation-bar">
       <div className="nav-content">
         <Link to="/" className="brand-link">
-          <img src="/logo.png" alt="logo" className="brand-logo" />
+          <img src={logo} alt="logo" className="brand-logo" />
         </Link>
         <div className="nav-links">
           <NavItem to="/about-us">{isMobile ? "ABOUT" : "ABOUT US"}</NavItem>

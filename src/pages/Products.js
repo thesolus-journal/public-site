@@ -2,8 +2,11 @@ import { useState, useMemo } from "react";
 import ProductQuantity from "../components/ProductQuantity.js";
 import "../css/Products.css";
 
-const oatmilkImages = ["chapter_01.jpeg", "chapter_01_02.jpeg"];
-const matchaImages = ["chapter_01_02.jpeg", "chapter_01.jpeg"];
+import chapter01 from "../assets/chapter_01.jpeg";
+import chapter0102 from "../assets/chapter_01_02.jpeg";
+
+const oatmilkImages = [chapter01, chapter0102];
+const matchaImages = [chapter0102, chapter01];
 
 /**
  * Displays the main product page, allowing users to view product details,

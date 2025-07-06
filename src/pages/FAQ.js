@@ -21,13 +21,13 @@ const faqs = [
   },
   {
     icon: <HiOutlineMail />,
-    title: "Confirmation email from us",
+    title: "Confirmation email",
     q: "When and how will I receive my order confirmation?",
     a: "Order confirmations are typically sent within 2 hours after your purchase is complete. If you need urgent assistance, please don't hesitate to send us a direct message on Instagram at @thesolus.journal or contact us here. We're here to help!",
   },
   {
     icon: <HiOutlineTruck />,
-    title: "Order is prepared & shipped",
+    title: "Order shipment",
     q: "How can I track the status of my shipment?",
     a: "We'll send you updates on your order and shipment status directly to your email address. Keep an eye on your inbox, and feel free to reach out if you have any questions along the way.",
   },
