@@ -221,6 +221,10 @@ function Personalize() {
           </div>
         </div>
       </div>
+      <p style={{ fontStyle: "italic", color: "gray" }}>
+        We do our best to represent colors accurately, but slight variations may
+        occur due to lighting and device display differences.
+      </p>
     </div>
   );
 }
