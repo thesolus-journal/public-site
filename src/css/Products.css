@@ -25,7 +25,7 @@
 .product-page .main-image img {
   width: 100%;
   height: auto; /* Remove fixed height */
-  aspect-ratio: 16 / 9; /* Set aspect ratio */
+  aspect-ratio: 16 / 12; /* Set aspect ratio */
   object-fit: cover;
   border-radius: var(--space-xs);
 }
