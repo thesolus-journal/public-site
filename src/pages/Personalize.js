@@ -22,17 +22,17 @@ function Personalize() {
       oatmilk: {
         id: "1",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk",
-        class: "Premium",
+        class: "Original",
         price: 169000,
-        originalPrice: 189000,
+        originalPrice: 189888,
         poster: coverOatmilk,
       },
       matcha: {
         id: "2",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
-        class: "Premium",
+        class: "Original",
         price: 169000,
-        originalPrice: 189000,
+        originalPrice: 189888,
         poster: coverMatcha,
       },
     }),
@@ -152,7 +152,7 @@ function Personalize() {
         <div className="interface">
           <div className="text">
             <h3>JOURNAL CHAPTER 1 - PUT PEN TO PURPOSES</h3>
-            <h4>1st edition - Premium</h4>
+            <h4>1st edition - Original</h4>
             <p>Journaling in A5 size (148 x 210 mm)</p>
             <p>Hardcover available in two colors</p>
             <p>Paper: 80 gsm, white</p>
@@ -188,7 +188,7 @@ function Personalize() {
                       )}
                       %
                     </span>{" "}
-                    % from{" "}
+                    from{" "}
                     <span className="original-price">
                       {formatPrice(baseProduct.originalPrice)}
                     </span>

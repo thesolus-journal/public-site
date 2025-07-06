@@ -49,25 +49,25 @@ function Products() {
       oatmilk: {
         id: 1,
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk",
-        class: "Premium",
+        class: "Original",
         price: 169000,
-        originalPrice: 189000,
+        originalPrice: 189888,
         poster: "chapter_01.jpeg",
       },
       matcha: {
         id: 2,
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
-        class: "Premium",
+        class: "Original",
         price: 169000,
-        originalPrice: 189000,
+        originalPrice: 189888,
         poster: "chapter_01_02.jpeg",
       },
       bundle: {
         id: 3,
-        name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk & Matcha",
-        class: "Premium",
+        name: "Journal Chapter 1 - Put Pen to Purposes - Bundle Mixed Colors",
+        class: "Original",
         price: 315000,
-        originalPrice: 378000,
+        originalPrice: 379776,
         poster: "chapter_01_03.jpeg",
       },
     }),
@@ -132,7 +132,7 @@ function Products() {
         <div className="interface">
           <div className="text">
             <h3>JOURNAL CHAPTER 1 - PUT PEN TO PURPOSES</h3>
-            <h4>1st edition - Premium</h4>
+            <h4>1st edition - Original</h4>
             <p>Journaling in A5 size (148 x 210 mm)</p>
             <p>Hardcover available in two colors</p>
             <p>Paper: 80 gsm, white</p>
@@ -174,7 +174,7 @@ function Products() {
                       )}
                       %
                     </span>{" "}
-                    % % from{" "}
+                    from{" "}
                     <span className="original-price">
                       {formatPrice(currentProduct.originalPrice)}
                     </span>
