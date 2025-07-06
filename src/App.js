@@ -19,6 +19,7 @@ import ForBusiness from "./pages/ForBusiness";
 import BankTransfer from "./pages/BankTransfer";
 import NavigationBar from "./components/NavigationBar";
 import BottomBar from "./components/BottomBar";
+import Preview from "./pages/Preview";
 
 function App() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function App() {
               <Route path="/payment" element={<Payment />} />
               <Route path="/z40p4y12568111" element={<ZaloPay />} />
               <Route path="/confirmation" element={<Confirmation />} />
+              <Route path="/preview" element={<Preview />} />
               <Route
                 path="/shipping-information"
                 element={<ShippingInformation />}
