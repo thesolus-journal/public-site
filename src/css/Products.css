@@ -32,13 +32,13 @@
 
 .product-page .thumbnails {
   display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .product-page .thumbnails img {
-  width: clamp(60px, 10vw, 80px);
-  height: clamp(60px, 10vw, 80px);
+  width: 23%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;

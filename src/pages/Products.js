@@ -2,11 +2,23 @@ import { useState, useMemo } from "react";
 import ProductQuantity from "../components/ProductQuantity.js";
 import "../css/Products.css";
 
-import chapter01 from "../assets/chapter_01.jpeg";
-import chapter0102 from "../assets/chapter_01_02.jpeg";
+import oatmilkFirst from "../assets/products/oatmilk/oatmilk_1.jpg";
+import oatmilkSecond from "../assets/products/oatmilk/oatmilk_2.jpg";
+import oatmilkThird from "../assets/products/oatmilk/oatmilk_3.jpg";
+import oatmilkFourth from "../assets/products/oatmilk/oatmilk_4.jpg";
 
-const oatmilkImages = [chapter01, chapter0102];
-const matchaImages = [chapter0102, chapter01];
+import matchaFirst from "../assets/products/matcha/matcha_1.jpg";
+import matchaSecond from "../assets/products/matcha/matcha_2.jpg";
+import matchaThird from "../assets/products/matcha/matcha_3.jpg";
+import matchaFourth from "../assets/products/matcha/matcha_4.jpg";
+
+const oatmilkImages = [
+  oatmilkFirst,
+  oatmilkSecond,
+  oatmilkThird,
+  oatmilkFourth,
+];
+const matchaImages = [matchaFirst, matchaSecond, matchaThird, matchaFourth];
 
 /**
  * Displays the main product page, allowing users to view product details,
