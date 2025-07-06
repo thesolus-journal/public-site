@@ -1,4 +1,7 @@
 .image-with-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -10,8 +13,6 @@
 
 .personalization-overlay {
   position: absolute;
-  bottom: var(--space-xs);
-  right: var(--space-xs);
   background-color: transparent;
   color: var(--text-dark);
   padding: var(--space-xs) var(--space-sm);
@@ -37,4 +38,122 @@
   border-color: var(--accent-color);
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
+
+.personalize-page-container {
+  width: 100%;
+}
+
+.page-title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.personalize-page {
+  display: flex;
+  gap: var(--space-xl);
+  width: 100%;
+  align-items: flex-start;
+}
+
+.personalize-page .content {
+  flex: 1; /* Revert to equal flex distribution */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  justify-content: flex-start;
+  max-width: clamp(300px, 45vw, 600px); /* Control content column width */
+}
+
+.personalize-page .main-image {
+  /* Removed max-height, let image scale with width */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align image to the left */
+}
+
+.personalize-page .interface {
+  flex: 1; /* Revert to equal flex distribution */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.personalize-page .text h3 {
+  font-size: var(--font-size-md); /* Smaller font size */
+  margin-bottom: var(--space-sm);
+}
+
+.personalize-page .text h4 {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-sm);
+  color: var(--text-light);
+}
+
+.personalize-page .text p {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.color-options {
+  display: flex;
+  gap: var(--space-md);
+  margin: var(--space-sm) 0;
+}
+
+.color-square {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  border-radius: var(--space-xs);
+}
+
+.color-square.oatmilk {
+  background-color: #fffbe7;
+}
+
+.color-square.matcha {
+  background-color: #8fb78f;
+}
+
+.color-square.selected {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+@media (max-width: 800px) {
+  .personalize-page {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-title {
+    text-align: center;
+  }
+
+  .personalize-page .main-image {
+    justify-content: center;
+  }
+}
+
+.personalize-page-container .page-title {
+  text-align: left; /* Default alignment */
+}
+
+@media (max-width: 800px) {
+  .personalize-page {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .personalize-page-container .page-title {
+    text-align: center; /* Center on small screens */
+  }
+
+  .personalize-page .main-image {
+    justify-content: center;
+  }
+}
+
 

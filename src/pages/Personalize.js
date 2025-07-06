@@ -1,10 +1,12 @@
 import { useState, useMemo } from "react";
 import ProductQuantity from "../components/ProductQuantity.js";
 import "../css/Personalize.css";
-import "../css/Products.css";
 
-const oatmilkImages = ["chapter_01.jpeg", "chapter_01_02.jpeg"];
-const matchaImages = ["chapter_01_02.jpeg", "chapter_01.jpeg"];
+import coverMatcha from "../assets/personalize/matcha_cover.jpg";
+import coverOatmilk from "../assets/personalize/oatmilk_cover.jpg";
+
+const oatmilkImage = coverOatmilk;
+const matchaImage = coverMatcha;
 
 /**
  * Allows users to customize a journal by selecting a color, adding custom text,
@@ -13,7 +15,7 @@ const matchaImages = ["chapter_01_02.jpeg", "chapter_01.jpeg"];
  */
 function Personalize() {
   const [color, setColor] = useState("oatmilk");
-  const [mainImage, setMainImage] = useState(oatmilkImages[0]);
+  const [mainImage, setMainImage] = useState(oatmilkImage);
   const [customText, setCustomText] = useState("");
 
   const productVariants = useMemo(
@@ -22,19 +24,18 @@ function Personalize() {
         id: "1",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Oat Milk",
         price: 1000000,
-        poster: "chapter_01.jpeg",
+        poster: coverOatmilk,
       },
       matcha: {
         id: "2",
         name: "Journal Chapter 1 - Put Pen to Purposes - Color: Matcha",
         price: 1000000,
-        poster: "chapter_01_02.jpeg",
+        poster: coverMatcha,
       },
     }),
     [],
   );
 
-  const images = color === "oatmilk" ? oatmilkImages : matchaImages;
   const baseProduct = productVariants[color];
 
   const customizedProduct = useMemo(
@@ -52,32 +53,47 @@ function Personalize() {
    */
   const handleColorChange = (selectedColor) => {
     setColor(selectedColor);
-    setMainImage(
-      selectedColor === "oatmilk" ? oatmilkImages[0] : matchaImages[0],
-    );
+    setMainImage(selectedColor === "oatmilk" ? oatmilkImage : matchaImage);
+  };
+
+  const getOverlayStyles = () => {
+    if (color === "oatmilk") {
+      return {
+        top: "74%",
+        left: "1%",
+        transform: "rotate(21deg)",
+        fontSize: "clamp(8.5px, 1.28vw, 17px)",
+        width: "60%",
+        textAlign: "center",
+      };
+    } else if (color === "matcha") {
+      return {
+        top: "69%",
+        left: "10%",
+        transform: "rotate(1deg)",
+        fontSize: "clamp(9px, 1.35vw, 18px)",
+        width: "60%",
+        textAlign: "center",
+      };
+    }
+    return {}; // Default or empty styles
   };
 
   return (
-    <div className="product-page-container">
+    <div className="personalize-page-container">
       <h3 className="page-title">PERSONALIZE YOUR JOURNAL</h3>
-      <div className="product-page">
+      <div className="personalize-page">
         <div className="content">
           <div className="main-image image-with-overlay">
             <img src={mainImage} alt="Main product view" />
             {customText && (
-              <div className="personalization-overlay">{customText}</div>
+              <div
+                className="personalization-overlay"
+                style={getOverlayStyles()}
+              >
+                {customText}
+              </div>
             )}
-          </div>
-          <div className="thumbnails">
-            {images.map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={`Thumbnail ${index + 1}`}
-                onClick={() => setMainImage(src)}
-                className={src === mainImage ? "active" : ""}
-              />
-            ))}
           </div>
         </div>
         <div className="interface">
@@ -111,6 +127,7 @@ function Personalize() {
               onChange={(e) => setCustomText(e.target.value)}
               placeholder="Enter your name or message"
               className="personalization-input"
+              maxLength={40}
             />
           </div>
           <div className="product">
