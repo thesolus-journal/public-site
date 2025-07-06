@@ -235,7 +235,7 @@
   }
 
   .remove-item {
-    /* margin-left: auto; removed as redundant */
+    margin-left: auto;
   }
 
   .coupon-section {
