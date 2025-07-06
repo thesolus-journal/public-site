@@ -65,6 +65,7 @@ function AboutUs() {
         </div>
         <div className="content">
           <img src={about} alt="product"></img>
+          <div className="image-overlay"></div>
         </div>
       </div>
     </div>
