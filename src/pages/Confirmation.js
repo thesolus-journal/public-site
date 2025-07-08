@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   HiOutlineShoppingCart,
@@ -20,16 +20,16 @@ function Confirmation() {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   return (
     <div className="confirmation-page">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { Link } from "react-router-dom";
 import "../css/BottomBar.css";
 import instagramIcon from "../assets/instagram.png";
@@ -6,18 +6,11 @@ import instagramIcon from "../assets/instagram.png";
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbz1eyhVQQsJ99T_BkwD6tQWsUuh1Deu4oREg_jpFH1UG7f1lxXtxDr02i6tOEGk7gwr/exec"; // Placeholder URL
 
-/**
- * A reusable link component for the bottom bar.
- * @param {object} props - The component props.
- * @param {string} props.to - The path for the link.
- * @param {string} props.children - The text to display.
- * @returns {JSX.Element} A Link component.
- */
-const BottomLink = ({ to, children }) => (
+const BottomLink = memo(({ to, children }) => (
   <Link to={to} className="bottom-link">
     {children}
   </Link>
-);
+));
 
 /**
  * Displays the footer with contact information, social media links, and other

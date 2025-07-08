@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "../css/Preview.css";
 
@@ -24,7 +24,7 @@ function Preview() {
   const [bookWidth, setBookWidth] = useState(575);
   const [bookHeight, setBookHeight] = useState(794);
 
-  const calculateBookSize = () => {
+  const calculateBookSize = useCallback(() => {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const A5_RATIO = 148 / 210; // Width / Height for a single page
@@ -40,7 +40,7 @@ function Preview() {
 
     setBookWidth(Math.floor(calculatedWidth));
     setBookHeight(Math.floor(calculatedHeight));
-  };
+  }, []);
 
   useEffect(() => {
     calculateBookSize();

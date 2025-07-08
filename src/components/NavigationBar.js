@@ -1,24 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 import "../css/NavigationBar.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import logo from "../assets/logo.png";
 
-/**
- * A reusable navigation link component that indicates active status.
- * @param {object} props - The component props.
- * @param {string} props.to - The path for the link.
- * @param {string} props.children - The text to display.
- * @returns {JSX.Element} A NavLink component.
- */
-const NavItem = ({ to, children }) => (
+const NavItem = memo(({ to, children }) => (
   <NavLink
     to={to}
     className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
   >
     {children}
   </NavLink>
-);
+));
 
 /**
  * Displays the top navigation menu with logo and links.
