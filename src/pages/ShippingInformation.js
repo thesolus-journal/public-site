@@ -60,7 +60,7 @@ function ShippingInformation() {
           : item.name;
         return `${name} x${item.quantity} (${(
           item.price * item.quantity
-        ).toLocaleString()} VND)`;
+        ).toString()} VND)`;
       })
       .join(", ");
 
@@ -73,12 +73,9 @@ function ShippingInformation() {
     formData.append("Occupation", form.occupation);
     formData.append("Referral", form.referral);
     formData.append("CartItems", cartItemsString);
-    formData.append(
-      "TotalBeforeDiscount",
-      totalBeforeDiscount.toLocaleString(),
-    );
-    formData.append("DiscountAmount", discountAmount.toLocaleString());
-    formData.append("Total", totalAmount.toLocaleString());
+    formData.append("TotalBeforeDiscount", totalBeforeDiscount.toString());
+    formData.append("DiscountAmount", discountAmount.toString());
+    formData.append("Total", totalAmount.toString());
     formData.append("CouponCode", couponCode);
 
     try {
