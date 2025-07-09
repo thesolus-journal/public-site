@@ -88,7 +88,6 @@ function ShippingInformation() {
         throw new Error("Network response was not ok.");
       }
 
-      alert("Thank you for shopping with us. Your order is recorded!");
       navigate("/payment");
     } catch (error) {
       console.error("Submission error:", error);

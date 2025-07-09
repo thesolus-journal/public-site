@@ -26,9 +26,7 @@
 }
 
 .contact-intro a:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
 }
 
 .contact-form {

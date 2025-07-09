@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   HiOutlineCurrencyDollar,
   HiOutlineMail,
@@ -23,19 +24,48 @@ const faqs = [
     icon: <HiOutlineMail />,
     title: "Confirmation email",
     q: "When and how will I receive my order confirmation?",
-    a: "Order confirmations are typically sent within 2 hours after your purchase is complete. If you need urgent assistance, please don't hesitate to send us a direct message on Instagram at @thesolus.journal or contact us here. We're here to help!",
+    a: (
+      <>
+        Order confirmations are typically sent within 2 hours after your
+        purchase is complete. If you need urgent assistance, please don't
+        hesitate to send us a direct message on Instagram at{" "}
+        <a
+          href="https://www.instagram.com/thesolus.journal/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @thesolus.journal
+        </a>{" "}
+        or contact us <Link to="/contact-us">here</Link>. We're here to help!
+      </>
+    ),
   },
   {
     icon: <HiOutlineTruck />,
     title: "Order shipment",
     q: "How can I track the status of my shipment?",
-    a: "We'll send you updates on your order and shipment status directly to your email address. Keep an eye on your inbox, and feel free to reach out if you have any questions along the way.",
+    a: (
+      <>
+        "We'll send you updates on your order and shipment status directly to
+        your email address. Keep an eye on your inbox, and feel free to reach
+        out <Link to="/contact-us">here</Link> if you have any questions along
+        the way.",
+      </>
+    ),
   },
   {
     icon: <HiOutlineCheckCircle />,
     title: "Delivery complete",
     q: "Can I request a refund or return for my order?",
-    a: "At this time, we do not have a refund policy in place. However, your satisfaction is incredibly important to us. If you have any concerns, feedback, or special requests, please don't hesitate to reach out here. We're always happy to listen and assist in any way we can.",
+    a: (
+      <>
+        At this time, we do not have a refund policy in place. However, your
+        satisfaction is incredibly important to us. If you have any concerns,
+        feedback, or special requests, please don't hesitate to reach out{" "}
+        <Link to="/contact-us">here</Link>. We're always happy to listen and
+        assist in any way we can.
+      </>
+    ),
   },
 ];
 

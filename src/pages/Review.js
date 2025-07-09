@@ -13,6 +13,7 @@ function Review() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    orderId: "",
     rating: 0,
     review: "",
   });
@@ -44,6 +45,7 @@ function Review() {
     const dataToSend = new FormData();
     dataToSend.append("Name", formData.name);
     dataToSend.append("Email", formData.email);
+    dataToSend.append("OrderId", formData.orderId);
     dataToSend.append("Rating", formData.rating);
     dataToSend.append("Review", formData.review);
 
@@ -61,6 +63,7 @@ function Review() {
       setFormData({
         name: "",
         email: "",
+        orderId: "",
         rating: 0,
         review: "",
       });
@@ -105,6 +108,21 @@ function Review() {
               value={formData.email}
               onChange={handleChange}
               placeholder="your.email@example.com"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <label htmlFor="orderId">Your order ID*</label>
+          <div className="form-field-container">
+            <input
+              type="text"
+              id="orderId"
+              name="orderId"
+              value={formData.orderId}
+              onChange={handleChange}
+              placeholder="Enter your tracking ID"
               required
             />
           </div>

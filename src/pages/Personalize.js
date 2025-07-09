@@ -212,6 +212,10 @@ function Personalize() {
               className="personalization-input"
               maxLength={40}
             />
+            <p style={{ fontStyle: "italic", color: "gray" }}>
+              Please expect delivery within 5-7 days for the personalized
+              product.
+            </p>
           </div>
           <div className="product">
             <ProductQuantity

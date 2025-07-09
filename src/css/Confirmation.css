@@ -86,6 +86,7 @@
 .question-item a {
   color: var(--text-dark);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .icon-circle-small {

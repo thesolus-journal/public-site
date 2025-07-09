@@ -15,6 +15,11 @@ import ForBusiness from "../pages/ForBusiness";
 import BankTransfer from "../pages/BankTransfer";
 import Preview from "../pages/Preview";
 
+/**
+ * MainContent component serves as the primary router for the application,
+ * dynamically rendering pages based on the current URL.
+ * @returns {JSX.Element} The main content router.
+ */
 function MainContent() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";

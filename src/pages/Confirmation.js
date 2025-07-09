@@ -106,7 +106,7 @@ function Confirmation() {
                 Need help?{" "}
                 <a
                   href="https://www.instagram.com/thesolus.journal/"
-                  target="https://www.instagram.com/thesolus.journal/"
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   Instagram
@@ -118,7 +118,7 @@ function Confirmation() {
                 Need help? Contact us on{" "}
                 <a
                   href="https://www.instagram.com/thesolus.journal/"
-                  target="https://www.instagram.com/thesolus.journal/"
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   Instagram

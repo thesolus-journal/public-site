@@ -81,8 +81,8 @@ function BottomBar() {
           <h3>Follow us on:</h3>
           <a
             href="https://www.instagram.com/thesolus.journal/"
-            target="https://www.instagram.com/thesolus.journal/"
-            rel="noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-icon-link"
           >
             <img src={instagramIcon} alt="Instagram" className="social-icon" />
