@@ -16,17 +16,17 @@ function Home() {
       </video>
       <div className="video-overlay"></div>
       <div className="text">
-        <p className="title">coming soon</p>
+        <p className="title">Grand Opening</p>
         <p className="date-text">11.07.2025</p>
         <p className="narration">
-          We're about to launch a premium notebook collection designed for busy
-          minds who long to slow down and think deeper
+          This is a premium notebook collection designed for busy minds who long
+          to slow down and think deeper
         </p>
         <button
           className="order-button"
           onClick={() => navigate("/our-product")}
         >
-          pre-order
+          order now
         </button>
       </div>
     </div>
