@@ -289,7 +289,7 @@ function ShippingInformation() {
           <button type="button" onClick={handleBack} disabled={isSubmitting}>
             Back
           </button>
-          <button type="submit" disabled={isSubmitting || !isVietnamAddress}>
+          <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Sending..." : "Next"}
           </button>
         </div>
