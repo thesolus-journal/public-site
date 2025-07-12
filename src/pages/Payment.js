@@ -9,7 +9,7 @@ import {
 import PaymentInstructions from "../components/PaymentInstructions";
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
-import "../css/Payment.css";
+import styles from "../css/Payment.module.css";
 
 /**
  * Payment component guides the user through the self-checkout payment process.
@@ -69,56 +69,56 @@ function Payment() {
   const { number, symbol } = formatPrice(displayAmount);
 
   return (
-    <div className="payment-page">
+    <div className={styles["payment-page"]}>
       <h2>SELF CHECKOUT!</h2>
 
-      <div className="payment-content">
-        <div className="barcode">
+      <div className={styles["payment-content"]}>
+        <div className={styles.barcode}>
           <img src="qr_code.png" alt="Payment Barcode" />
-          <div className="total-amount-display">
-            Total to Pay: <span className="price-number">{number}</span>
-            <span className="price-symbol">{symbol}</span>
+          <div className={styles["total-amount-display"]}>
+            Total to Pay: <span className={styles["price-number"]}>{number}</span>
+            <span className={styles["price-symbol"]}>{symbol}</span>
           </div>
         </div>
 
-        <div className="process-steps">
-          <div className="step">
-            <div className="icon-circle">
+        <div className={styles["process-steps"]}>
+          <div className={styles.step}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineShoppingCart size={24} />
             </div>
-            <div className="step-text">
+            <div className={styles["step-text"]}>
               <h3>Add products to cart</h3>
             </div>
           </div>
 
-          <div className="step">
-            <div className="icon-circle">
+          <div className={styles.step}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineCreditCard size={24} />
             </div>
-            <div className="step-text">
+            <div className={styles["step-text"]}>
               <PaymentInstructions />
             </div>
           </div>
 
-          <div className="step future">
-            <div className="icon-circle">
+          <div className={`${styles.step} ${styles.future}`}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineMail size={24} />
             </div>
-            <div className="step-text">
+            <div className={styles["step-text"]}>
               We will send your order confirmation to the email you provided in
               the note.
             </div>
           </div>
-          <div className="step future">
-            <div className="icon-circle">
+          <div className={`${styles.step} ${styles.future}`}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineTruck size={24} />
             </div>
-            <div className="step-text">We ship your order.</div>
+            <div className={styles["step-text"]}>We ship your order.</div>
           </div>
         </div>
       </div>
 
-      <div className="confirm-button">
+      <div className={styles["confirm-button"]}>
         <button onClick={handleConfirmPayment}>I’ve Completed Payment</button>
       </div>
     </div>

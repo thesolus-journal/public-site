@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/ForBusiness.css";
+import styles from "../css/ForBusiness.module.css";
 
 /**
  * ForBusiness component displays information for business inquiries.
@@ -8,10 +8,11 @@ import "../css/ForBusiness.css";
  */
 function ForBusiness() {
   return (
-    <div className="page-container">
+    <div className={styles["page-container"]}>
       <h2>FOR BUSINESS</h2>
       <p>
-        We are currently developing our business solutions page. Please check back soon for more information!
+        We are currently developing our business solutions page. Please check
+        back soon for more information!
       </p>
       <p>
         In the meantime, feel free to contact us directly with your inquiries.

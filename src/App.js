@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import { ProductProvider } from "./contexts/ProductContext";
 import { CouponProvider } from "./contexts/CouponContext";
 import NavigationBar from "./components/NavigationBar";
@@ -9,7 +9,7 @@ function App() {
   return (
     <CouponProvider>
       <ProductProvider>
-        <div className="page-wrapper">
+        <div className={styles["page-wrapper"]}>
           <NavigationBar />
           <MainContent />
           <BottomBar />

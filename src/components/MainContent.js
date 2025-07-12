@@ -14,6 +14,7 @@ import Review from "../pages/Review";
 import ForBusiness from "../pages/ForBusiness";
 import BankTransfer from "../pages/BankTransfer";
 import Preview from "../pages/Preview";
+import styles from "../App.module.css";
 
 /**
  * MainContent component serves as the primary router for the application,
@@ -25,7 +26,7 @@ function MainContent() {
   const isHomePage = location.pathname === "/";
 
   return (
-    <div className={isHomePage ? "" : "main-content"}>
+    <div className={isHomePage ? "" : styles["main-content"]}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />

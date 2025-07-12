@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import ProductQuantity from "../components/ProductQuantity.js";
 import { Link } from "react-router-dom";
-import "../css/Products.css";
+import styles from "../css/Products.module.css";
 
 import oatmilkFirst from "../assets/products/oatmilk/oatmilk_1.jpg";
 import oatmilkSecond from "../assets/products/oatmilk/oatmilk_2.jpg";
@@ -78,8 +78,8 @@ function Products() {
     color === "oatmilk"
       ? oatmilkImages
       : color === "matcha"
-        ? matchaImages
-        : bundleImages;
+      ? matchaImages
+      : bundleImages;
   const currentProduct = products[color];
 
   /**
@@ -92,8 +92,8 @@ function Products() {
       selectedColor === "oatmilk"
         ? oatmilkImages[0]
         : selectedColor === "matcha"
-          ? matchaImages[0]
-          : bundleImages[0],
+        ? matchaImages[0]
+        : bundleImages[0],
     );
   };
 
@@ -110,27 +110,27 @@ function Products() {
   };
 
   return (
-    <div className="product-page-container">
-      <h3 className="page-title">OUR PRODUCT</h3>
-      <div className="product-page">
-        <div className="content">
-          <div className="main-image">
+    <div className={styles["product-page-container"]}>
+      <h3 className={styles["page-title"]}>OUR PRODUCT</h3>
+      <div className={styles["product-page"]}>
+        <div className={styles.content}>
+          <div className={styles["main-image"]}>
             <img src={mainImage} alt="Main product view" />
           </div>
-          <div className="thumbnails">
+          <div className={styles.thumbnails}>
             {images.map((src, index) => (
               <img
                 key={index}
                 src={src}
                 alt={`Thumbnail ${index + 1}`}
                 onClick={() => setMainImage(src)}
-                className={src === mainImage ? "active" : ""}
+                className={src === mainImage ? styles.active : ""}
               />
             ))}
           </div>
         </div>
-        <div className="interface">
-          <div className="text">
+        <div className={styles.interface}>
+          <div className={styles.text}>
             <h3>JOURNAL CHAPTER 1 - PUT PEN TO PURPOSES</h3>
             <h4>1st edition - Original</h4>
             <p>Journaling in A5 size (148 x 210 mm)</p>
@@ -138,36 +138,36 @@ function Products() {
             <p>Paper: 80 gsm, white</p>
             <p>Please see the detailed specifications below</p>
             <h4>Color:</h4>
-            <div className="color-options">
+            <div className={styles["color-options"]}>
               <div
-                className={`color-square oatmilk ${
-                  color === "oatmilk" ? "selected" : ""
+                className={`${styles["color-square"]} ${styles.oatmilk} ${
+                  color === "oatmilk" ? styles.selected : ""
                 }`}
                 onClick={() => handleColorChange("oatmilk")}
               ></div>
               <div
-                className={`color-square matcha ${
-                  color === "matcha" ? "selected" : ""
+                className={`${styles["color-square"]} ${styles.matcha} ${
+                  color === "matcha" ? styles.selected : ""
                 }`}
                 onClick={() => handleColorChange("matcha")}
               ></div>
               <div
-                className={`color-square bundle ${
-                  color === "bundle" ? "selected" : ""
+                className={`${styles["color-square"]} ${styles.bundle} ${
+                  color === "bundle" ? styles.selected : ""
                 }`}
                 onClick={() => handleColorChange("bundle")}
               ></div>
             </div>
             <h4>Price:</h4>
-            <div className="price-display">
+            <div className={styles["price-display"]}>
               {currentProduct.originalPrice ? (
-                <p className="price-info">
-                  <span className="current-price">
+                <p className={styles["price-info"]}>
+                  <span className={styles["current-price"]}>
                     {formatPrice(currentProduct.price)}
                   </span>
-                  <span className="save-info">
+                  <span className={styles["save-info"]}>
                     . Buy now to save{" "}
-                    <span className="save-percentage">
+                    <span className={styles["save-percentage"]}>
                       {calculateSavePercentage(
                         currentProduct.originalPrice,
                         currentProduct.price,
@@ -175,21 +175,21 @@ function Products() {
                       %
                     </span>{" "}
                     from{" "}
-                    <span className="original-price">
+                    <span className={styles["original-price"]}>
                       {formatPrice(currentProduct.originalPrice)}
                     </span>
                   </span>
                 </p>
               ) : (
-                <p className="price-info">
-                  <span className="current-price">
+                <p className={styles["price-info"]}>
+                  <span className={styles["current-price"]}>
                     {formatPrice(currentProduct.price)}
                   </span>
                 </p>
               )}
             </div>
           </div>
-          <div className="product">
+          <div className={styles.product}>
             <ProductQuantity product={currentProduct} />
           </div>
         </div>
@@ -198,14 +198,14 @@ function Products() {
         We do our best to represent colors accurately, but slight variations may
         occur due to lighting and device display differences.
       </p>
-      <div className="section-divider"></div>
-      <div className="product-details-container">
-        <div className="product-details-image">
+      <div className={styles["section-divider"]}></div>
+      <div className={styles["product-details-container"]}>
+        <div className={styles["product-details-image"]}>
           <img src={detailsFirst} alt="Product Details 1" />
           <img src={detailsSecond} alt="Product Details 2" />
         </div>
-        <div className="product-details-text">
-          <div className="product-specifications">
+        <div className={styles["product-details-text"]}>
+          <div className={styles["product-specifications"]}>
             <h3>Product Specifications</h3>
             <p>
               <strong>Size:</strong> A5 (148 x 210 mm)
@@ -220,7 +220,7 @@ function Products() {
               <strong>Pages:</strong> 160 total
             </p>
           </div>
-          <div className="inside-journal">
+          <div className={styles["inside-journal"]}>
             <h3>Inside the Journal</h3>
             <p>Designed for 3 months of growth and clarity.</p>
             <p>Structured in a repeating cycle:</p>
@@ -242,13 +242,16 @@ function Products() {
               <li>Undated layout - start anytime, no wasted pages</li>
             </ul>
           </div>
-          <div className="additional-features">
+          <div className={styles["additional-features"]}>
             <h3>Additional Features</h3>
             <ul>
               <li>Elastic closure band for secure, on-the-go journaling</li>
               <li>
                 Name personalization available{" "}
-                <Link to="/personalize" className="bold-underline-link">
+                <Link
+                  to="/personalize"
+                  className={styles["bold-underline-link"]}
+                >
                   here
                 </Link>
               </li>
@@ -256,13 +259,13 @@ function Products() {
           </div>
         </div>
       </div>
-      <div className="section-divider"></div>
-      <div className="product-photos-container">
-        <div className="product-photos-image">
+      <div className={styles["section-divider"]}></div>
+      <div className={styles["product-photos-container"]}>
+        <div className={styles["product-photos-image"]}>
           <img src={galleryFirst} alt="Product Details 1" />
           <img src={gallerySecond} alt="Product Details 2" />
         </div>
-        <div className="product-photos-image">
+        <div className={styles["product-photos-image"]}>
           <img src={galleryThird} alt="Product Details 1" />
           <img src={galleryFourth} alt="Product Details 2" />
         </div>
@@ -272,3 +275,4 @@ function Products() {
 }
 
 export default Products;
+

@@ -1,4 +1,4 @@
-import "../css/AboutUs.css";
+import styles from "../css/AboutUs.module.css";
 import about from "../assets/products/bundle/bundle_4.jpg";
 
 /**
@@ -8,10 +8,10 @@ import about from "../assets/products/bundle/bundle_4.jpg";
  */
 function AboutUs() {
   return (
-    <div className="about-page-container">
-      <h3 className="page-title">ABOUT US</h3>
-      <div className="about-page">
-        <div className="text">
+    <div className={styles["about-page-container"]}>
+      <h3 className={styles["page-title"]}>ABOUT US</h3>
+      <div className={styles["about-page"]}>
+        <div className={styles.text}>
           <p>
             For six years, I immersed myself in the corporate world. It was a
             path that promised and delivered stability, a competitive income,
@@ -63,9 +63,9 @@ function AboutUs() {
             build a life that aligns with your deepest aspirations.
           </p>
         </div>
-        <div className="content">
+        <div className={styles.content}>
           <img src={about} alt="product"></img>
-          <div className="image-overlay"></div>
+          <div className={styles["image-overlay"]}></div>
         </div>
       </div>
     </div>

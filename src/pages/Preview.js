@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import HTMLFlipBook from "react-pageflip";
-import "../css/Preview.css";
+import styles from "../css/Preview.module.css";
 
 import coverMatcha from "../assets/preview/cover_matcha.png";
 import blankSpace from "../assets/preview/blank_space.png";
@@ -48,10 +48,10 @@ function Preview() {
     return () => {
       window.removeEventListener("resize", calculateBookSize);
     };
-  }, []);
+  }, [calculateBookSize]);
 
   return (
-    <div className="preview-container">
+    <div className={styles["preview-container"]}>
       <HTMLFlipBook
         width={bookWidth}
         height={bookHeight}
@@ -66,12 +66,16 @@ function Preview() {
         clickThreshold={50}
       >
         {pages.map((page, index) => (
-          <div className="page" key={index}>
-            <div className={`page-content ${page.isCover ? "cover" : ""}`}>
+          <div className={styles.page} key={index}>
+            <div
+              className={`${styles["page-content"]} ${
+                page.isCover ? styles.cover : ""
+              }`}
+            >
               <img
                 src={page.image}
                 alt={`Page ${index + 1}`}
-                className="page-image"
+                className={styles["page-image"]}
               />
             </div>
           </div>

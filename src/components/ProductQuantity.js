@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProductContext } from "../contexts/ProductContext";
 import { useNavigate } from "react-router-dom";
 
-import "../css/ProductQuantity.css";
+import styles from "../css/ProductQuantity.module.css";
 
 /**
  * Allows users to adjust the quantity of a product and add it to the cart.
@@ -43,24 +43,24 @@ function ProductQuantity({ product, showPersonalizeButton = true }) {
 
   return (
     <>
-      <div className="product-quantity">
+      <div className={styles["product-quantity"]}>
         <h4>Quantity:</h4>
-        <div className="adjustor">
-          <div className="display">
-            <span className="quantity">{quantity}</span>
+        <div className={styles.adjustor}>
+          <div className={styles.display}>
+            <span className={styles.quantity}>{quantity}</span>
           </div>
-          <div className="buttons">
+          <div className={styles.buttons}>
             <button onClick={handleIncrease}>+</button>
             <button
               onClick={handleDecrease}
               disabled={quantity === 1}
-              className={quantity === 1 ? "disabled-button" : ""}
+              className={quantity === 1 ? styles["disabled-button"] : ""}
             >
               -
             </button>
           </div>
         </div>
-        <div className="action-buttons">
+        <div className={styles["action-buttons"]}>
           <button onClick={handleAddToCart} disabled={quantity === 0}>
             Add to Cart
           </button>

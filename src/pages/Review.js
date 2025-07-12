@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/Review.css";
+import styles from "../css/Review.module.css";
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxNjNhtE-jXRQip0mGZ6Zq_bTWwziBOI8JzfLN3HbRpra9P9bWeDQg-d3bBdLwPQm0R/exec"; // Placeholder URL
@@ -76,16 +76,16 @@ function Review() {
   };
 
   return (
-    <div className="review-page">
+    <div className={styles["review-page"]}>
       <h2>LEAVE A REVIEW</h2>
-      <p className="review-intro">
+      <p className={styles["review-intro"]}>
         We'd love to hear about your experience with us!
       </p>
 
-      <form className="review-form" onSubmit={handleSubmit}>
-        <div className="form-row">
+      <form className={styles["review-form"]} onSubmit={handleSubmit}>
+        <div className={styles["form-row"]}>
           <label htmlFor="name">Your Name*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="text"
               id="name"
@@ -98,9 +98,9 @@ function Review() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="email">Email*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="email"
               id="email"
@@ -113,9 +113,9 @@ function Review() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="orderId">Your order ID*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="text"
               id="orderId"
@@ -128,10 +128,10 @@ function Review() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="rating">Rating*</label>
-          <div className="form-field-container">
-            <div className="star-rating">
+          <div className={styles["form-field-container"]}>
+            <div className={styles["star-rating"]}>
               {[...Array(5)].map((_, index) => {
                 const ratingValue = index + 1;
                 return (
@@ -140,14 +140,14 @@ function Review() {
                     key={ratingValue}
                     className={
                       (hoverRating || formData.rating) >= ratingValue
-                        ? "on"
-                        : "off"
+                        ? styles.on
+                        : styles.off
                     }
                     onClick={() => handleRatingClick(ratingValue)}
                     onMouseEnter={() => handleMouseEnter(ratingValue)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <span className="star">&#9733;</span>
+                    <span className={styles.star}>&#9733;</span>
                   </button>
                 );
               })}
@@ -155,9 +155,9 @@ function Review() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="review">Your Review*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <textarea
               id="review"
               name="review"
@@ -170,10 +170,10 @@ function Review() {
           </div>
         </div>
 
-        <div className="form-navigation">
+        <div className={styles["form-navigation"]}>
           <button
             type="submit"
-            className="submit-button"
+            className={styles["submit-button"]}
             disabled={isSubmitting}
           >
             {isSubmitting ? "Sending..." : "Submit"}

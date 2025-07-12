@@ -1,13 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
-import "../css/NavigationBar.css";
+import styles from "../css/NavigationBar.module.css";
 import React, { useState, useEffect, memo } from "react";
 import logo from "../assets/logo.png";
 
 const NavItem = memo(({ to, children }) => (
   <NavLink
     to={to}
-    className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+    className={({ isActive }) =>
+      isActive
+        ? `${styles["nav-link"]} ${styles.active}`
+        : styles["nav-link"]
+    }
   >
     {children}
   </NavLink>
@@ -33,12 +37,12 @@ function NavigationBar() {
   }, []);
 
   return (
-    <nav className="navigation-bar">
-      <div className="nav-content">
-        <Link to="/" className="brand-link">
-          <img src={logo} alt="logo" className="brand-logo" />
+    <nav className={styles["navigation-bar"]}>
+      <div className={styles["nav-content"]}>
+        <Link to="/" className={styles["brand-link"]}>
+          <img src={logo} alt="logo" className={styles["brand-logo"]} />
         </Link>
-        <div className="nav-links">
+        <div className={styles["nav-links"]}>
           <NavItem to="/about-us">{isMobile ? "ABOUT" : "ABOUT US"}</NavItem>
           <NavItem to="/our-product">
             {isMobile ? "PRODUCT" : "OUR PRODUCT"}
@@ -48,7 +52,7 @@ function NavigationBar() {
           <NavItem to="/shopping-cart">
             <span>{isMobile ? "CART" : "SHOPPING CART"}</span>
             {totalCartItems > 0 && (
-              <span className="cart-badge">
+              <span className={styles["cart-badge"]}>
                 {totalCartItems > 9 ? "9+" : totalCartItems}
               </span>
             )}

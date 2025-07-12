@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import ProductQuantity from "../components/ProductQuantity.js";
-import "../css/Personalize.css";
+import styles from "../css/Personalize.module.css";
 
 import coverMatcha from "../assets/personalize/matcha_cover.jpg";
 import coverOatmilk from "../assets/personalize/oatmilk_cover.jpg";
@@ -103,28 +103,32 @@ function Personalize() {
   };
 
   return (
-    <div className="personalize-page-container">
-      <h3 className="page-title">PERSONALIZE YOUR JOURNAL</h3>
-      <div className="personalize-page">
-        <div className="content">
+    <div className={styles["personalize-page-container"]}>
+      <h3 className={styles["page-title"]}>PERSONALIZE YOUR JOURNAL</h3>
+      <div className={styles["personalize-page"]}>
+        <div className={styles.content}>
           {color === "bundle" ? (
-            <div className="bundle-image-container">
-              <div className="main-image image-with-overlay">
+            <div className={styles["bundle-image-container"]}>
+              <div
+                className={`${styles["main-image"]} ${styles["image-with-overlay"]}`}
+              >
                 <img src={oatmilkImage} alt="Oatmilk product view" />
                 {customText && (
                   <div
-                    className="personalization-overlay"
+                    className={styles["personalization-overlay"]}
                     style={getOverlayStyles("oatmilk")}
                   >
                     {customText}
                   </div>
                 )}
               </div>
-              <div className="main-image image-with-overlay">
+              <div
+                className={`${styles["main-image"]} ${styles["image-with-overlay"]}`}
+              >
                 <img src={matchaImage} alt="Matcha product view" />
                 {customText && (
                   <div
-                    className="personalization-overlay"
+                    className={styles["personalization-overlay"]}
                     style={getOverlayStyles("matcha")}
                   >
                     {customText}
@@ -133,14 +137,16 @@ function Personalize() {
               </div>
             </div>
           ) : (
-            <div className="main-image image-with-overlay">
+            <div
+              className={`${styles["main-image"]} ${styles["image-with-overlay"]}`}
+            >
               <img
                 src={color === "oatmilk" ? oatmilkImage : matchaImage}
                 alt="Main product view"
               />
               {customText && (
                 <div
-                  className="personalization-overlay"
+                  className={styles["personalization-overlay"]}
                   style={getOverlayStyles(color)}
                 >
                   {customText}
@@ -149,8 +155,8 @@ function Personalize() {
             </div>
           )}
         </div>
-        <div className="interface">
-          <div className="text">
+        <div className={styles.interface}>
+          <div className={styles.text}>
             <h3>JOURNAL CHAPTER 1 - PUT PEN TO PURPOSES</h3>
             <h4>1st edition - Original</h4>
             <p>Journaling in A5 size (148 x 210 mm)</p>
@@ -158,30 +164,30 @@ function Personalize() {
             <p>Paper: 80 gsm, white</p>
             <p>Please see the detailed specifications below</p>
             <h4>Color:</h4>
-            <div className="color-options">
+            <div className={styles["color-options"]}>
               <div
-                className={`color-square oatmilk ${
-                  color === "oatmilk" ? "selected" : ""
+                className={`${styles["color-square"]} ${styles.oatmilk} ${
+                  color === "oatmilk" ? styles.selected : ""
                 }`}
                 onClick={() => handleColorChange("oatmilk")}
               ></div>
               <div
-                className={`color-square matcha ${
-                  color === "matcha" ? "selected" : ""
+                className={`${styles["color-square"]} ${styles.matcha} ${
+                  color === "matcha" ? styles.selected : ""
                 }`}
                 onClick={() => handleColorChange("matcha")}
               ></div>
             </div>
             <h4>Price:</h4>
-            <div className="price-display">
+            <div className={styles["price-display"]}>
               {baseProduct.originalPrice ? (
-                <p className="price-info">
-                  <span className="current-price">
+                <p className={styles["price-info"]}>
+                  <span className={styles["current-price"]}>
                     {formatPrice(baseProduct.price)}
                   </span>
-                  <span className="save-info">
+                  <span className={styles["save-info"]}>
                     . Buy now to save{" "}
-                    <span className="save-percentage">
+                    <span className={styles["save-percentage"]}>
                       {calculateSavePercentage(
                         baseProduct.originalPrice,
                         baseProduct.price,
@@ -189,14 +195,14 @@ function Personalize() {
                       %
                     </span>{" "}
                     from{" "}
-                    <span className="original-price">
+                    <span className={styles["original-price"]}>
                       {formatPrice(baseProduct.originalPrice)}
                     </span>
                   </span>
                 </p>
               ) : (
-                <p className="price-info">
-                  <span className="current-price">
+                <p className={styles["price-info"]}>
+                  <span className={styles["current-price"]}>
                     {formatPrice(baseProduct.price)}
                   </span>
                 </p>
@@ -209,7 +215,7 @@ function Personalize() {
               value={customText}
               onChange={(e) => setCustomText(e.target.value)}
               placeholder="Enter your name or message"
-              className="personalization-input"
+              className={styles["personalization-input"]}
               maxLength={40}
             />
             <p style={{ fontStyle: "italic", color: "gray" }}>
@@ -217,7 +223,7 @@ function Personalize() {
               product.
             </p>
           </div>
-          <div className="product">
+          <div className={styles.product}>
             <ProductQuantity
               product={customizedProduct}
               showPersonalizeButton={false}

@@ -6,7 +6,7 @@ import {
   HiOutlineTruck,
   HiOutlineCheckCircle,
 } from "react-icons/hi";
-import "../css/FAQ.css";
+import styles from "../css/FAQ.module.css";
 
 /**
  * FAQ component displays a list of frequently asked questions and their answers.
@@ -71,16 +71,16 @@ const faqs = [
 
 function FAQ() {
   return (
-    <div className="faq-page">
-      <h2 className="faq-title">Frequently Asked Questions</h2>
-      <div className="faq-grid">
+    <div className={styles["faq-page"]}>
+      <h2 className={styles["faq-title"]}>Frequently Asked Questions</h2>
+      <div className={styles["faq-grid"]}>
         {faqs.map((faq, index) => (
-          <div key={index} className="faq-item">
-            <div className="faq-header">
-              <div className="faq-icon">{faq.icon}</div>
+          <div key={index} className={styles["faq-item"]}>
+            <div className={styles["faq-header"]}>
+              <div className={styles["faq-icon"]}>{faq.icon}</div>
               <h3>{faq.title}</h3>
             </div>
-            <div className="faq-content">
+            <div className={styles["faq-content"]}>
               <p>
                 <strong>Q:</strong> {faq.q}
               </p>

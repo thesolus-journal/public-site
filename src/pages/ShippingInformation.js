@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 import { useCouponContext } from "../contexts/CouponContext";
-import "../css/ShippingInformation.css";
+import styles from "../css/ShippingInformation.module.css";
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxHa_XHeXueFlGE9qFDU_RbHXu5v2XBy1pCpxgSv6OTkpGwc3dcizbzJEOOX6yQDQAW/exec";
@@ -14,6 +14,7 @@ const SCRIPT_URL =
  */
 function ShippingInformation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVietnamAddress, setIsVietnamAddress] = useState(false);
   const { cart } = useProductContext();
   const { discountPercent = 0, couponCode } = useCouponContext() || {};
   const navigate = useNavigate();
@@ -98,16 +99,16 @@ function ShippingInformation() {
   };
 
   return (
-    <div className="shipping-page">
+    <div className={styles["shipping-page"]}>
       <h2>Shipping & Contact Information</h2>
 
-      <form className="shipping-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <div className="form-row">
+      <form className={styles["shipping-form"]} onSubmit={handleSubmit}>
+        <div className={styles["form-group"]}>
+          <div className={styles["form-row"]}>
             <label htmlFor="name">
-              Full Name<span className="required">*</span>:
+              Full Name<span className={styles.required}>*</span>:
             </label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <input
                 id="name"
                 type="text"
@@ -120,11 +121,11 @@ function ShippingInformation() {
             </div>
           </div>
 
-          <div className="form-row">
+          <div className={styles["form-row"]}>
             <label htmlFor="email">
-              Email Address<span className="required">*</span>:
+              Email Address<span className={styles.required}>*</span>:
             </label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <input
                 id="email"
                 type="email"
@@ -137,11 +138,11 @@ function ShippingInformation() {
             </div>
           </div>
 
-          <div className="form-row">
+          <div className={styles["form-row"]}>
             <label htmlFor="phone">
-              Phone Number<span className="required">*</span>:
+              Phone Number<span className={styles.required}>*</span>:
             </label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <input
                 id="phone"
                 type="tel"
@@ -154,11 +155,11 @@ function ShippingInformation() {
             </div>
           </div>
 
-          <div className="form-row">
+          <div className={styles["form-row"]}>
             <label htmlFor="address">
-              Shipping Address<span className="required">*</span>:
+              Shipping Address<span className={styles.required}>*</span>:
             </label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <textarea
                 id="address"
                 name="address"
@@ -168,30 +169,64 @@ function ShippingInformation() {
                 required
                 rows={3}
               />
+              <div className={styles["form-row-checkbox"]}>
+                <input
+                  type="checkbox"
+                  id="isVietnamAddress"
+                  checked={isVietnamAddress}
+                  onChange={(e) => setIsVietnamAddress(e.target.checked)}
+                  required
+                />
+                <label
+                  htmlFor="isVietnamAddress"
+                  className={styles["checkbox-label"]}
+                >
+                  My shipping address is in Vietnam.
+                </label>
+              </div>
             </div>
           </div>
         </div>
 
         <hr />
 
-        <div className="form-group">
-          <div className="form-row">
+        <div className={styles["form-group"]}>
+          <div className={styles["form-row"]}>
             <label htmlFor="referral">How did you hear about us?</label>
-            <div className="form-field-container">
-              <input
+            <div className={styles["form-field-container"]}>
+              <select
                 id="referral"
                 type="text"
                 name="referral"
                 value={form.referral}
                 onChange={handleChange}
-                placeholder="Optional"
-              />
+              >
+                <option value="">--</option>
+                <option value="article">Blog or Online Article</option>
+                <option value="newsletter">Email Newsletter</option>
+                <option value="facebook">Facebook</option>
+                <option value="recommendation">
+                  Friend or Family Recommendation
+                </option>
+                <option value="event">From an Event</option>
+                <option value="google">Google Search</option>
+                <option value="influencer">Influencer Recommendation</option>
+                <option value="instagram">Instagram</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="advertisement">Online Advertisement</option>
+                <option value="pinterest">Pinterest</option>
+                <option value="saw">Saw Your Product Somewhere</option>
+                <option value="tiktok">TikTok</option>
+                <option value="twitter">Twitter (X)</option>
+                <option value="youtube">YouTube</option>
+                <option value="others">Others</option>
+              </select>
             </div>
           </div>
 
-          <div className="form-row">
+          <div className={styles["form-row"]}>
             <label htmlFor="dob">Your DOB (date of birth):</label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <input
                 id="dob"
                 type="date"
@@ -199,12 +234,16 @@ function ShippingInformation() {
                 value={form.dob}
                 onChange={handleChange}
               />
+              <p>
+                Let us celebrate your birthday with you - enjoy a special treat
+                from us during your birthday month!
+              </p>
             </div>
           </div>
 
-          <div className="form-row">
+          <div className={styles["form-row"]}>
             <label htmlFor="occupation">What do you do?</label>
-            <div className="form-field-container">
+            <div className={styles["form-field-container"]}>
               <select
                 id="occupation"
                 name="occupation"
@@ -212,23 +251,45 @@ function ShippingInformation() {
                 onChange={handleChange}
               >
                 <option value="">Select your occupation</option>
+                <option value="education">Academic Professional</option>
+                <option value="office-based">
+                  Administrative / Office Support
+                </option>
+                <option value="business-owner">Business Owner</option>
+                <option value="consultant">Consultant</option>
+                <option value="creative">
+                  Creative Professional (Designer, Writer, etc.)
+                </option>
+                <option value="customer-service">
+                  Customer Service / Client Support
+                </option>
+                <option value="finance-accounting">Finance / Accounting</option>
+                <option value="freelancer">Freelancer / Self-employed</option>
+                <option value="healthcare">Healthcare Professional</option>
+                <option value="marketing-advertising-pr">
+                  Marketing / Advertising / PR
+                </option>
+                <option value="operations-logistic">
+                  Operations / Supply Chain / Logistics
+                </option>
+                <option value="sales-business-dev">
+                  Sales & Business Development
+                </option>
                 <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="designer">Designer</option>
-                <option value="developer">Developer</option>
-                <option value="writer">Writer</option>
-                <option value="entrepreneur">Entrepreneur</option>
-                <option value="other">Other</option>
+                <option value="technical">
+                  Technical (IT, Developer, Engineer)
+                </option>
+                <option value="others">Others</option>
               </select>
             </div>
           </div>
         </div>
 
-        <div className="form-navigation">
+        <div className={styles["form-navigation"]}>
           <button type="button" onClick={handleBack} disabled={isSubmitting}>
             Back
           </button>
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit" disabled={isSubmitting || !isVietnamAddress}>
             {isSubmitting ? "Sending..." : "Next"}
           </button>
         </div>

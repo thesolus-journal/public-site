@@ -14,33 +14,33 @@
 
 .shipping-form {
   width: 100%;
-  max-width: clamp(600px, 80vw, 900px); /* Control overall form width */
-  margin-left: var(--space-md); /* Align left with title */
-  margin-right: auto; /* Allow it to push to the left */
+  max-width: clamp(600px, 80vw, 900px);
+  margin-left: var(--space-md);
+  margin-right: auto;
 }
 
 .form-row {
   display: flex;
-  justify-content: space-between; /* Push label and input container apart */
-  align-items: flex-start; /* Align labels to the top of the row */
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: var(--space-md);
 }
 
 .form-row label {
-  flex: 0 0 auto; /* Allow label to take its content width */
-  max-width: clamp(120px, 20vw, 200px); /* Prevent label from becoming too wide */
+  flex: 0 0 auto;
+  max-width: clamp(120px, 20vw, 200px);
   margin-right: var(--space-md);
   font-weight: 600;
   text-align: left;
   user-select: none;
   white-space: nowrap;
   font-size: var(--font-size-md);
-  padding-top: var(--space-xs); /* Small padding to align text baseline */
+  padding-top: var(--space-xs);
 }
 
 .form-field-container {
-  flex: 1; /* Take up remaining space */
-  max-width: clamp(300px, 50vw, 500px); /* Ensure all input fields end at the same point */
+  flex: 1;
+  max-width: clamp(300px, 50vw, 500px);
   display: flex;
   flex-direction: column;
 }
@@ -48,7 +48,7 @@
 .form-row input,
 .form-row textarea,
 .form-row select {
-  width: 100%; /* Take full width of its container */
+  width: 100%;
   padding: var(--space-sm) var(--space-md);
   font-size: var(--font-size-md);
   border: 1.5px solid var(--border-color);
@@ -57,10 +57,9 @@
   font-family: inherit;
   outline-offset: 2px;
   background-color: transparent;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box;
 }
 
-/* Focus state */
 .form-row input:focus,
 .form-row textarea:focus,
 .form-row select:focus {
@@ -84,7 +83,7 @@ hr {
 
 .form-navigation button {
   height: auto;
-  min-width: clamp(100px, 15vw, 120px); /* Ensure consistent width for 'Next' and 'Sending...' */
+  min-width: clamp(100px, 15vw, 120px);
   font-size: var(--font-size-md);
   border-radius: var(--space-xs);
   border: none;
@@ -112,43 +111,81 @@ hr {
   font-weight: bold;
 }
 
+.form-row-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-row-checkbox input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: var(--space-sm);
+  margin-top: var(--space-sm);
+  accent-color: black;
+}
+
+.checkbox-label {
+  font-size: var(--font-size-md) !important;
+  user-select: none;
+  font-weight: normal !important;
+  padding-top: 0;
+  white-space: normal;
+}
+
 @media (max-width: 800px) {
   .shipping-page h2 {
     font-size: var(--font-size-lg);
   }
 
   .shipping-form {
-    margin: 0 auto; /* Center the form */
+    margin: 0;
+    max-width: unset;
   }
 
   .form-row {
     flex-direction: column;
-    align-items: stretch; /* make input full width */
-    padding-right: var(--space-md); /* Add gap on the right */
+    align-items: stretch;
+    padding-right: var(--space-md);
   }
 
   .form-row label {
     flex: none;
     margin-right: 0;
-    margin-bottom: var(--space-xs); /* space between label and input */
+    margin-bottom: var(--space-xs);
     padding-top: 0;
-    white-space: normal; /* allow label to wrap */
-    max-width: unset; /* Allow label to take full available width */
+    white-space: normal;
+    max-width: unset;
   }
 
   .form-row input,
   .form-row textarea,
   .form-row select {
-    width: 100%; /* full width input */
+    width: 100%;
   }
 
   .form-field-container {
-    max-width: 100%; /* Ensure form field container takes full width */
+    max-width: 100%;
   }
 
-  .shipping-page h2 {
-    text-align: center;
+  .form-row-checkbox {
+    padding-left: 0;
+    margin-top: var(--space-sm);
   }
+
+  .form-row-checkbox input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: var(--space-sm);
+    margin-top: var(--space-xs);
+    accent-color: black;
+  }
+
+
+  .form-navigation {
+    max-width: unset;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: var(--space-md);
+  }
+
 }
-
-

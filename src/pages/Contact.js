@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/Contact.css";
+import styles from "../css/Contact.module.css";
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxPr67q1E7aletsvL5Pr7NMWRhpgmicHqjrMcoWCsfX_JFfsLUp_tV_d5L-zSIXtLTK/exec";
@@ -63,17 +63,17 @@ function Contact() {
   };
 
   return (
-    <div className="contact-page">
+    <div className={styles["contact-page"]}>
       <h2>CONTACT US</h2>
-      <p className="contact-intro">
+      <p className={styles["contact-intro"]}>
         Have a question? You might find the answer in our{" "}
         <Link to="/faq">FAQs!</Link>
       </p>
 
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="form-row">
+      <form className={styles["contact-form"]} onSubmit={handleSubmit}>
+        <div className={styles["form-row"]}>
           <label htmlFor="name">Your Name*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="text"
               id="name"
@@ -86,9 +86,9 @@ function Contact() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="email">Email*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="email"
               id="email"
@@ -101,9 +101,9 @@ function Contact() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="phone">Phone*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <input
               type="tel"
               id="phone"
@@ -116,9 +116,9 @@ function Contact() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="topic">Topics*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <select
               id="topic"
               name="topic"
@@ -151,9 +151,9 @@ function Contact() {
           </div>
         </div>
 
-        <div className="form-row">
+        <div className={styles["form-row"]}>
           <label htmlFor="message">Message*</label>
-          <div className="form-field-container">
+          <div className={styles["form-field-container"]}>
             <textarea
               id="message"
               name="message"
@@ -166,10 +166,10 @@ function Contact() {
           </div>
         </div>
 
-        <div className="form-navigation">
+        <div className={styles["form-navigation"]}>
           <button
             type="submit"
-            className="submit-button"
+            className={styles["submit-button"]}
             disabled={isSubmitting}
           >
             {isSubmitting ? "Sending..." : "Send"}

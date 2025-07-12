@@ -10,7 +10,7 @@ import {
   HiArrowRight,
   HiOutlineSupport,
 } from "react-icons/hi";
-import "../css/Confirmation.css";
+import styles from "../css/Confirmation.module.css";
 
 /**
  * Displays an order confirmation message and a visual timeline of the shipping process.
@@ -32,47 +32,47 @@ function Confirmation() {
   }, [handleResize]);
 
   return (
-    <div className="confirmation-page">
+    <div className={styles["confirmation-page"]}>
       <h2>Thank You for Your Order!</h2>
       <p>
         We're verifying your order and will send a confirmation email shortly.
       </p>
-      <div className="process-steps-container">
-        <div className="process-steps">
-          <div className="step">
-            <div className="icon-circle">
+      <div className={styles["process-steps-container"]}>
+        <div className={styles["process-steps"]}>
+          <div className={styles.step}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineShoppingCart size={24} />
             </div>
           </div>
 
-          <div className="step">
-            <div className="icon-circle">
+          <div className={styles.step}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineCreditCard size={24} />
             </div>
           </div>
 
-          <div className="step">
-            <div className="icon-circle">
+          <div className={styles.step}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineMail size={24} />
             </div>
           </div>
-          <div className="step future">
-            <div className="icon-circle">
+          <div className={`${styles.step} ${styles.future}`}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineTruck size={24} />
             </div>
           </div>
-          <div className="step future">
-            <div className="icon-circle">
+          <div className={`${styles.step} ${styles.future}`}>
+            <div className={styles["icon-circle"]}>
               <HiOutlineCube size={24} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="confirmation-questions">
-        <div className="question-item">
+      <div className={styles["confirmation-questions"]}>
+        <div className={styles["question-item"]}>
           <div
-            className="icon-circle-small"
+            className={styles["icon-circle-small"]}
             onClick={() => navigate("/payment")}
           >
             <HiArrowLeft size={20} />
@@ -83,8 +83,11 @@ function Confirmation() {
               : "Oops I have NOT pay successfully, how to handle this?"}
           </p>
         </div>
-        <div className="question-item">
-          <div className="icon-circle-small" onClick={() => navigate("/faq")}>
+        <div className={styles["question-item"]}>
+          <div
+            className={styles["icon-circle-small"]}
+            onClick={() => navigate("/faq")}
+          >
             <HiArrowRight size={20} />
           </div>
           <p>
@@ -93,9 +96,9 @@ function Confirmation() {
               : "Done with the payment, when will I receive my order?"}
           </p>
         </div>
-        <div className="question-item">
+        <div className={styles["question-item"]}>
           <div
-            className="icon-circle-small"
+            className={styles["icon-circle-small"]}
             onClick={() => navigate("/contact-us")}
           >
             <HiOutlineSupport size={20} />
