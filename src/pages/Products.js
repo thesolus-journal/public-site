@@ -78,8 +78,8 @@ function Products() {
     color === "oatmilk"
       ? oatmilkImages
       : color === "matcha"
-      ? matchaImages
-      : bundleImages;
+        ? matchaImages
+        : bundleImages;
   const currentProduct = products[color];
 
   /**
@@ -92,8 +92,8 @@ function Products() {
       selectedColor === "oatmilk"
         ? oatmilkImages[0]
         : selectedColor === "matcha"
-        ? matchaImages[0]
-        : bundleImages[0],
+          ? matchaImages[0]
+          : bundleImages[0],
     );
   };
 
@@ -236,8 +236,7 @@ function Products() {
               <li>4 bonus templates for clarity, creativity, and focus</li>
               <li>10 dedicated pages for meeting notes</li>
               <li>
-                100+ dot grid pages for free writing, sketching, or
-                brainstorming
+                90 dot grid pages for free writing, sketching, or brainstorming
               </li>
               <li>Undated layout - start anytime, no wasted pages</li>
             </ul>
@@ -275,4 +274,3 @@ function Products() {
 }
 
 export default Products;
-
